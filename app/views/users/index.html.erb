@@ -1,8 +1,8 @@
-<h3>list all users</h3>
+<h2>list all users</h2>
 
 <ul>
 	<% @user.each do |user|%>
-	<li><%= link_to(user.name, user_path(user))%></li>
+	<li><h3><%= link_to(user.name, user_path(user))%></h3></li>
 	<%end%>
 </ul>
-<%= link_to('Add new', new_user_path)%>
+<h4><%= link_to('Add new', new_user_path)%></h4>
