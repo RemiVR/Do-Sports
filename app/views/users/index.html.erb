@@ -1,0 +1,8 @@
+<h3>list all users</h3>
+
+<ul>
+	<% @user.each do |user|%>
+	<li><%= link_to(user.name, user_path(:id))%></li>
+	<%end%>
+</ul>
+<%= link_to('Add new', new_user_path)%>
