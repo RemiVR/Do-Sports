@@ -3,6 +3,7 @@
 	<div style="background: pink;">
 		<%= link_to("Join", join_group_path(@group.id))%>
 		<h3>The list of user!</h3>
+		<%= flash[:notice]%>
 		<ul>
 			<% @users.each do |user|%>
 			<li>
@@ -12,4 +13,4 @@
 		</ul>
 	</div>
 </div>
-<%= link_to("Get out!", groups_path)%>
+<button><%= link_to("Back", groups_path)%></button>
