@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+	before_filter :authorize, except: [:new, :create]
 	before_action :set_user, only: [:show, :edit, :update, :destroy]
 
 	def index
@@ -14,16 +15,17 @@ class UsersController < ApplicationController
 		@user = User.new(user_params)
 
 		if @user.save
-			redirect_to users_path
+			session[:user_id] = @user.id
+			redirect_to '/users'
 		else
-			render 'new'
+			redirect_to '/signup'
 		end
 	end
 	def edit
 		
 	end
 	def update
-		 if @user.update(user_params)
+		 if @user.updatea_attributes(user_params)
       		flash[:notice] = "User updated successfully"
       		redirect_to user_path(@user)
     	else
