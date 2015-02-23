@@ -1,7 +1,7 @@
 <h2>This is an inside of the group page!</h2>
 <div class="container">
 	<div style="background: pink;">
-		<%= link_to("Join", join_group_path(:group_id))%>
+		<%= link_to("Join", join_group_path(@group.id))%>
 		<h3>The list of user!</h3>
 		<ul>
 			<% @users.each do |user|%>
