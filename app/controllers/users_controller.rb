@@ -16,7 +16,7 @@ class UsersController < ApplicationController
 
 		if @user.save
 			session[:user_id] = @user.id
-			redirect_to '/users'
+			redirect_to '/'
 		else
 			redirect_to '/signup'
 		end
@@ -27,7 +27,7 @@ class UsersController < ApplicationController
 	def update
 		 if @user.updatea_attributes(user_params)
       		flash[:notice] = "User updated successfully"
-      		redirect_to user_path(@user)
+      		redirect_to group_user_path(@user)
     	else
       		render 'edit'
     	end

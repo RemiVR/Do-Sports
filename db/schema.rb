@@ -20,7 +20,6 @@ ActiveRecord::Schema.define(version: 20150223141654) do
     t.string   "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer  "group_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -29,6 +28,7 @@ ActiveRecord::Schema.define(version: 20150223141654) do
     t.datetime "updated_at",      null: false
     t.string   "email"
     t.string   "password_digest"
+    t.integer  "group_id"
   end
 
 end
