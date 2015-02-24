@@ -9,7 +9,9 @@ Rails.application.routes.draw do
   post '/users' => 'users#create'
 
 
-  resources :groups
+  resources :groups do
+    resources :events
+  end
   resources :users
 
 end

@@ -8,6 +8,7 @@ class GroupsController < ApplicationController
 		@group = Group.find(params[:id])
 		@users = @group.users
 		@users_count = @users.count
+		@events = @group.events
 	end
 
 	def new
@@ -17,9 +18,6 @@ class GroupsController < ApplicationController
 		@group = Group.find(params[:id])
 		@users = @group.users << current_user
 		redirect_to group_path(@group.id)
-	end
-	def leave
-		
 	end
 	def create
 		@group = Group.new(group_params)
