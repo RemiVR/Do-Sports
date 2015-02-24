@@ -18,7 +18,7 @@ class GroupsController < ApplicationController
 		@users = @group.users << current_user
 		redirect_to group_path(@group.id)
 	end
-	def leave_group
+	def leave
 		
 	end
 	def create

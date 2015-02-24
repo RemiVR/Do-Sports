@@ -5,7 +5,8 @@
 		<p> This group have <%= @users_count%> users.</p>
 		<ul>
 			<% @users.each do |user|%>
-			<li><%= user.name%></li><br>
+			<li><%= user.name%></li>
+			<li><%= user.email%></li><hr>
 			<%end%>
 		</ul>
 		<br>
