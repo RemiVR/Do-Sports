@@ -16,6 +16,9 @@
 			<% @events.each do |event|%>
 			<h2><li><%= event.title%></li></h2>
 			<h4><li><%= event.date%></li></h4>
+			<a href="#" class="attendats">Show attendants</a>
+			<ul class="attendants">
+			</ul>
 			<%end%>
 			<br>
 		</ul>

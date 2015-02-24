@@ -1,6 +1,7 @@
 class User < ActiveRecord::Base
 	has_secure_password
 	belongs_to :group
+	has_many :attendances
 	has_many :events, through: :attendances
 
 	validates :name, presence: true, length: { in: 2..255 }
