@@ -1,20 +1,18 @@
 <h2>This is an inside of the group page!</h2>
 <div class="container">
 	<div style="background: pink;">
-		<% if current_user.group_id == @group.id%> 
-		<%= current_user.name%>
-		<%else%>
-		<%= link_to("Join", join_group_path(@group.id))%>
-		<%end%>
 		<h3>The list of user!</h3>
-		<%= flash[:notice]%>
+		<p> This group have <%= @users_count%> users.</p>
 		<ul>
 			<% @users.each do |user|%>
-			<li>
-				<%= user.name%>
-			</li>
+			<li><%= user.name%></li><br>
 			<%end%>
 		</ul>
-	</div>
+		<br>
+		<% if current_user.group_id == @group.id%> 
+		<%else%>
+			<button><%= link_to("Join", join_group_path(@group.id))%></button>
+		<%end%>
+	</div><br>
 </div>
-<button><%= link_to("Back", groups_path)%></button>
+<button><%= link_to("Back", '/')%></button>

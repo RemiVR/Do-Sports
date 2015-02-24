@@ -10,13 +10,15 @@
 <header>
 	<h1><%=link_to("Do sport!", '/')%></h1>
 </header>
-<div class="login" style="background: yellowgreen;">
+<hr>
+<div class="login">
 	<% if current_user %>
   		Signed in as <%= link_to(current_user.name, user_path(current_user.id))%> | <button><%= link_to "Logout", '/logout' %></button>
 	<%else%>
 		<button><%= link_to 'Login', '/login' %></button> | <button><%= link_to 'Signup', '/signup' %></button>
 	<%end%>
 </div>
+<hr>
 <br>
 <%= yield %>
 

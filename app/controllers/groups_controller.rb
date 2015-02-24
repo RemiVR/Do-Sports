@@ -7,6 +7,7 @@ class GroupsController < ApplicationController
 	def show
 		@group = Group.find(params[:id])
 		@users = @group.users
+		@users_count = @users.count
 	end
 
 	def new
@@ -17,10 +18,13 @@ class GroupsController < ApplicationController
 		@users = @group.users << current_user
 		redirect_to group_path(@group.id)
 	end
+	def leave_group
+		
+	end
 	def create
 		@group = Group.new(group_params)
 		if @group.save
-			redirect_to groups_path
+			redirect_to '/'
 		else
 			render 'new'
 		end
