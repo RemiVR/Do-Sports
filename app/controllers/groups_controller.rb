@@ -13,15 +13,9 @@ class GroupsController < ApplicationController
 		@group = Group.new
 	end
 	def join_group
-		
-			@group = Group.find(params[:id])
-		if current_user.group_id == @group.id
-			flash[:notice] = "Already part of the group"
-			redirect_to group_path(@group.id)
-		else
-			@users = @group.users << current_user
-			redirect_to group_path(@group.id)
-		end
+		@group = Group.find(params[:id])
+		@users = @group.users << current_user
+		redirect_to group_path(@group.id)
 	end
 	def create
 		@group = Group.new(group_params)

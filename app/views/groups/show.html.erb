@@ -1,7 +1,11 @@
 <h2>This is an inside of the group page!</h2>
 <div class="container">
 	<div style="background: pink;">
+		<% if current_user.group_id == @group.id%> 
+		<%= current_user.name%>
+		<%else%>
 		<%= link_to("Join", join_group_path(@group.id))%>
+		<%end%>
 		<h3>The list of user!</h3>
 		<%= flash[:notice]%>
 		<ul>
