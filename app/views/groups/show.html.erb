@@ -1,6 +1,10 @@
 <h2>This is an inside of the group page!</h2>
 <div class="container">
-	<div style="background: pink;">
+	<div class="row">
+	<div class="col-md-8" style="background: yellowgreen;">
+		<h1>This is gonna be events </h1>
+	</div>
+	<div class="col-md-4" style="background: pink;">
 		<h3>The list of user!</h3>
 		<p> This group have <%= @users_count%> users.</p>
 		<ul>
@@ -10,10 +14,12 @@
 			<%end%>
 		</ul>
 		<br>
-		<% if current_user.group_id == @group.id%> 
+		<% if current_user.group_id == @group.id%>
 		<%else%>
 			<button><%= link_to("Join", join_group_path(@group.id))%></button>
 		<%end%>
 	</div><br>
+	
+	</div>
 </div>
 <button><%= link_to("Back", '/')%></button>
