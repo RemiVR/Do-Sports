@@ -1,8 +1,16 @@
-<ul>
-	<% @event.attendances.each do |attendance|%>
-	<li>Hello</li>
-	<li><%= attendance.user_id%></li>
-	<%end%>
-	<%= link_to("Attend", create_attendance_path(@event.id), method: :post)%>
-</ul>
+<h3>Description</h3>
+<p>this is the description of the event</p>
+<hr>
+<table class="table table-hover">
+	<thead>
+		<td>id of Attendant</td>
+	</thead>
+		<% @event.users.each do |user|%>
+	<tbody>
+		<td><%= user.name%></td>
+	</tbody>
+		<%end%>
+</table>
+	<%= flash[:error]%><br>
+	<%= link_to("Attend", create_attendance_path(@event.id), method: :post)%><br>
 <%= link_to("back", groups_path)%>
