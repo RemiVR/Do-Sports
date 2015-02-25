@@ -9,6 +9,7 @@ class GroupsController < ApplicationController
 		@users = @group.users
 		@users_count = @users.count
 		@events = @group.events
+		# @event_details = @group
 	end
 
 	def new
