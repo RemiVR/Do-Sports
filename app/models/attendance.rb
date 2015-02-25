@@ -3,4 +3,13 @@ class Attendance < ActiveRecord::Base
 	belongs_to :user
 
 	 validates_uniqueness_of :user_id, scope: [:event_id]
+	 validate :ensure_group
+
+	 private
+	 def ensure_group
+	 	if Event.find(event_id).group_id == User.find(user_id).group_id
+	 	else
+	 	errors.add(flash[:messages] = "You are not part of this group!")
+	 	end
+	 end
 end

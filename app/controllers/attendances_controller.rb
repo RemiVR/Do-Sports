@@ -9,9 +9,10 @@ class AttendancesController < ApplicationController
 	def create
 		@attendance = Event.find(params[:id]).attendances.create(user_id: current_user.id)
 		if @attendance.save
+			flash[:notice] = "You have joined the event"
 			redirect_to event_path(params[:id])
 		else
-			flash[:error] = "Already attending"
+			flash[:error] = "You are not part of this group"
 			redirect_to event_path(params[:id])
 		end
 	end

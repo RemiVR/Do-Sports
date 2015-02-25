@@ -5,6 +5,6 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
-10.times.with_index do |index|
-	User.create(name: 'blob', email: "remi#{index}@gmail.com", password: "1234", password_confirmation: "1234" )
-end
+# 10.times.with_index do |index|
+# 	User.create(name: 'blob', email: "remi#{index}@gmail.com", password: "1234", password_confirmation: "1234" )
+# end
