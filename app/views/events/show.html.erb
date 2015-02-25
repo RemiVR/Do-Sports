@@ -12,7 +12,10 @@
 		<%end%>
 </table>
 	<%= flash[:error]%><br>
-	<%= link_to("Attend", create_attendance_path(@event.id), method: :post)%><br>
+	<br>
+	<% unless current_user.group_id == @event.id%>
+		<%= link_to("Attend", create_attendance_path(@event.id), method: :post)%>
+	<%end%>
 	<br>
 <%= link_to("back", groups_path)%>
 <br>

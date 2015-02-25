@@ -7,9 +7,8 @@ class Attendance < ActiveRecord::Base
 
 	 private
 	 def ensure_group
-	 	if Event.find(event_id).group_id == User.find(user_id).group_id
-	 	else
-	 	errors.add(flash[:messages] = "You are not part of this group!")
+	 	if Event.find(event_id).group_id != User.find(user_id).group_id
+	 		errors.add(:message, "You are not a member of this group")
 	 	end
 	 end
 end

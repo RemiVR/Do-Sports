@@ -30,8 +30,7 @@
 			<%end%>
 		</ul>
 		<br>
-		<% if current_user.group_id == @group.id%>
-		<%else%>
+		<% unless current_user.group_id == @group.id%>
 			<button><%= link_to("Join", join_group_path(@group.id))%></button>
 		<%end%>
 	</div>
