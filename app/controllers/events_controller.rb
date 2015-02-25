@@ -1,6 +1,7 @@
 class EventsController < ApplicationController
 	def show
-
+		@event = Event.find(params[:id])
+		@attendance = @event.attendances
 	end
 	
 	def new
@@ -16,10 +17,9 @@ class EventsController < ApplicationController
 		else
 			render 'new'
 		end
-
 	end
-	
-	def attendance
+
+	def add_attendant
 		
 	end
 
@@ -27,9 +27,5 @@ class EventsController < ApplicationController
 
 	def event_params
 		params.require(:event).permit(:title, :date)
-	end
-
-	def create_attendance(event_id, user_id)
-		@attendance = Event.find(event_id).attendances.create(user_id: user_id)
 	end
 end

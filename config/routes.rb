@@ -1,19 +1,24 @@
 Rails.application.routes.draw do
   root 'groups#index'
+#login
   get '/login' => 'sessions#new'
   post '/login' => 'sessions#create'
   get '/logout' => 'sessions#destroy'
+#joining group
   get '/join/:id' => 'groups#join_group', as: "join_group"
-
+#signup
   get '/signup' => 'users#new'
   post '/users' => 'users#create'
-
+#attendance
+  post '/event/:id/add_attendant' => 'attendances#create', as: 'create_attendance'
 
   resources :groups do
     resources :events, :only => [:index, :create, :new]
   end
+
   resources :users
   resources :events, :only => [:show, :edit, :update, :destroy]
+
 end
 
 
@@ -34,7 +39,7 @@ end
 #                 POST   /groups(.:format)                      groups#create
 #       new_group GET    /groups/new(.:format)                  groups#new
 #      edit_group GET    /groups/:id/edit(.:format)             groups#edit
-#           group GET    /groups/:id(.:format)                  groups#show
+#           group GET    /groups/:id(.:format)                  groups#show 
 #                 PATCH  /groups/:id(.:format)                  groups#update
 #                 PUT    /groups/:id(.:format)                  groups#update
 #                 DELETE /groups/:id(.:format)                  groups#destroy

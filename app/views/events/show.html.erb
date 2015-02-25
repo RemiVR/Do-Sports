@@ -1,4 +1,8 @@
 <ul>
+	<% @event.attendances.each do |attendance|%>
 	<li>Hello</li>
+	<li><%= attendance.user_id%></li>
+	<%end%>
+	<%= link_to("Attend", create_attendance_path(@event.id), method: :post)%>
 </ul>
-<%= link_to("back", groups_path(:event_id))%>
+<%= link_to("back", groups_path)%>
