@@ -30,12 +30,18 @@
 		<p> This group have <%= @users_count%> users.</p>
 		<ul>
 			<% @users.each do |user|%>
-			<li><%= link_to(user.name, user_path(user.id))%></li><hr>
+			<h4><li><%= link_to(user.name, user_path(user.id))%></li></h4><hr>
 			<%end%>
 		</ul>
 		<br>
 		<% unless current_user.nil? || current_user.group_id == @group.id%>
-			<button><%= link_to("Join", join_group_path(@group.id))%></button>
+			<% unless current_user.group_id == @group.id.nil? || current_user.group_id == @group.id%>
+				<%= link_to("Join", join_group_path(@group.id), method: :post)%>
+			<%end%>
+		<%else%>
+			<% unless current_user.nil? || current_user.group_id == 0%>
+				<%= link_to("Leave", leave_group_path, method: :post)%>
+			<%end%>
 		<%end%>
 	</div>
 		<br>

@@ -5,7 +5,8 @@ Rails.application.routes.draw do
   post '/login' => 'sessions#create'
   get '/logout' => 'sessions#destroy'
 #joining group
-  get '/join/:id' => 'groups#join_group', as: "join_group"
+  post '/join/:id' => 'groups#join_new_group', as: 'join_group'
+  post '/leave/:id' => 'groups#leave_old_group', as: 'leave_group'
 #signup
   get '/signup' => 'users#new'
   post '/users' => 'users#create'
