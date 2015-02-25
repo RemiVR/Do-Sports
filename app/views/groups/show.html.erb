@@ -10,13 +10,17 @@
 	</div>
 	<div class="col-md-7" style="background: yellowgreen;">
 		<h1>Upcoming events </h1>
-		<%= link_to("Add new Event", new_group_event_path(@group.id))%>
+		<% unless current_user.nil? || current_user.group_id != @group.id%>
+			<%= link_to("Add new Event", new_group_event_path(@group.id))%>
+		<%end%>
 		<hr>
 		<ul>
 			<% @events.each do |event|%>
 			<h2><li><%= event.title%></li></h2>
 			<h4><li><%= event.date%></li></h4>
-			<%= link_to("Event details", event_path(event))%>
+			<% unless current_user.nil? || current_user.group_id != @group.id%>
+				<%= link_to("Event details", event_path(event))%>
+				<%end%>
 			<%end%>
 			<br>
 		</ul>
@@ -26,11 +30,11 @@
 		<p> This group have <%= @users_count%> users.</p>
 		<ul>
 			<% @users.each do |user|%>
-			<li><%= user.name%></li><hr>
+			<li><%= link_to(user.name, user_path(user.id))%></li><hr>
 			<%end%>
 		</ul>
 		<br>
-		<% unless current_user.group_id == @group.id%>
+		<% unless current_user.nil? || current_user.group_id == @group.id%>
 			<button><%= link_to("Join", join_group_path(@group.id))%></button>
 		<%end%>
 	</div>
