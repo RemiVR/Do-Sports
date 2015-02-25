@@ -35,7 +35,7 @@
 		</ul>
 		<br>
 		<% unless current_user.nil? || current_user.group_id == @group.id%>
-			<% unless current_user.group_id == @group.id.nil? || current_user.group_id == @group.id%>
+			<% unless current_user.group_id.nil? || current_user.group_id == @group.id%>
 				<%= link_to("Join", join_group_path(@group.id), method: :post)%>
 			<%end%>
 		<%else%>
