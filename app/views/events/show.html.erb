@@ -14,7 +14,7 @@
 </table>
 	<%= flash[:error]%><br>
 	<br>
-	<% if current_user.group_id == @event.id%>
+	<% unless current_user.group_id == @event.id%>
 		<%= link_to("Attend", create_attendance_path(@event.id), method: :post)%>
 	<%end%>
 	<br>
