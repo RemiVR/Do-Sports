@@ -11,9 +11,11 @@
 	<div class="col-md-8" style="background: yellowgreen;">
 		<h1>Upcoming events </h1>
 				<ul>
-					<li><% if current_user.nil? || current_user.id == @group.admin_id%>
+					<li><%unless current_user.nil?%>
+						<% if current_user.id == @group.admin_id%>
 					<%= link_to("Add new Event", new_group_event_path(@group.id))%>
 					<%end%></li>
+					<%end%>
 				</ul>
 				<hr>
 				<ul>
@@ -46,6 +48,7 @@
 		<br>
 		<% unless current_user.nil? %>
 			<% if @group.admin_id == current_user.id %>
+				<%= link_to("Edit", edit_group_path(@group.id))%>
 				<%= link_to("Delete", group_path(@group.id), method: :delete)%>
 			<% elsif @group.id == current_user.group_id %>
 				<%= link_to("Leave", leave_group_path, method: :post)%>

@@ -1,0 +1,9 @@
+<%= form_for @group do |f|%>
+	<%= f.label :name %>
+	<%= f.text_field :name %>
+	<br>
+	<%= f.submit 'Update' %>
+	<br>
+<%end%>
+<br>
+<button><%= link_to("Back", '/')%></button>

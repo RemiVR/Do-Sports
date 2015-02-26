@@ -5,6 +5,6 @@
 	<h2><%= link_to(group.name, group_path(group))%></h2>
 
 	<%end%>
-<%if current_user.group_id == nil%>
-<button type="button" class="btn btn-default"><%= link_to("Add new group", new_group_path)%></button>
+<% unless current_user.nil? || current_user.group_id != nil%>
+	<button type="button" class="btn btn-default"><%= link_to("Add new group", new_group_path)%></button>
 <%end%>

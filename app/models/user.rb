@@ -13,7 +13,8 @@ class User < ActiveRecord::Base
 	end
 
 	def leave_group(group_id)
-		self.group_id = 0
+		self.group_id = nil
 		self.save
+		self
 	end
 end
