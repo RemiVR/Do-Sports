@@ -1,9 +1,10 @@
 <div class="container">
-<h1>Yea! this is gonna be groups page!</h1>
+<h1>Yea! This is a list of all groups</h1>
 
 <% @group.each do |group|%>
 	<h2><%= link_to(group.name, group_path(group))%></h2>
-	<%end%>
 
+	<%end%>
+<%if current_user.group_id == nil%>
 <button type="button" class="btn btn-default"><%= link_to("Add new group", new_group_path)%></button>
-</div>
+<%end%>

@@ -8,29 +8,34 @@
 		<h4> Attendence </h4>
 		<h4> goals scored </h4>
 	</div>
-	<div class="col-md-7" style="background: yellowgreen;">
+	<div class="col-md-8" style="background: yellowgreen;">
 		<h1>Upcoming events </h1>
-		<ul>
-			<li><% unless current_user.nil? || current_user.group_id != @group.id%>
-			<%= link_to("Add new Event", new_group_event_path(@group.id))%>
-			<%end%></li>
-		</ul>
-		<hr>
-		<ul>
-			<% @events.each do |event|%>
-			<h2><li><%= event.title%></li></h2>
-			<h4><li><%= event.date%></li></h4>
-			<% unless current_user.nil? || current_user.group_id != @group.id%>
-				<%= link_to("Event details", event_path(event))%>
-				<br>
-				<%= link_to("Edit", edit_event_path(event))%>
-				<%= link_to("Delete", event_path(event), method: :delete)%>
+				<ul>
+					<li><% if current_user.nil? || current_user.id == @group.admin_id%>
+					<%= link_to("Add new Event", new_group_event_path(@group.id))%>
+					<%end%></li>
+				</ul>
+				<hr>
+				<ul>
+				<% @events.each do |event|%>
+					<h2><li><%= event.title%></li></h2>
+					<h4><li><%= event.date%></li></h4>
+					<% unless current_user.nil? || current_user.group_id != @group.id%>
+						<%= link_to("Event details", event_path(event))%>
+						<br>
+
+					<% if current_user.nil? || current_user.id == @group.admin_id%>
+						<%= link_to("Edit", edit_event_path(event))%>
+						<%= link_to("Delete", event_path(event), method: :delete)%>
+						<%end%>
+					<%end%>
 				<%end%>
-			<%end%>
-			<br>
-		</ul>
+				<br>
+				</ul>
+		<button><%= link_to("Back", '/')%></button>
 	</div>
-	<div class="col-md-3" style="background: pink;">
+
+	<div class="col-md-2" style="background: pink;">
 		<h3>The list of users!</h3>
 		<p> This group have <%= @users_count%> users.</p>
 		<ul>
@@ -39,17 +44,16 @@
 			<%end%>
 		</ul>
 		<br>
-		<% if current_user.nil? || current_user.group_id == 0%>
-			<% unless current_user.nil? || current_user.group_id == @group.id%>
+		<% unless current_user.nil? %>
+			<% if @group.admin_id == current_user.id %>
+				<%= link_to("Delete", group_path(@group.id), method: :delete)%>
+			<% elsif @group.id == current_user.group_id %>
+				<%= link_to("Leave", leave_group_path, method: :post)%>
+			<% elsif current_user.group_id == nil %>
 				<%= link_to("Join", join_group_path(@group.id), method: :post)%>
-			<%end%>
-		<%end%>
-		<% unless current_user.nil? || current_user.group_id != @group.id%>
-			<%= link_to("Leave", leave_group_path, method: :post)%>
+			<% end %>
 		<%end%>
 	</div>
 		<br>
 	</div>
 </div>
-<br>
-<button><%= link_to("Back", '/')%></button>
