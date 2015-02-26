@@ -13,7 +13,7 @@ class EventsController < ApplicationController
 		@group = Group.find(params[:group_id])
 		@event = @group.events.new event_params
 		if @event.save
-			redirect_to '/'
+			redirect_to group_path(@event.group_id)
 		else
 			render 'new'
 		end
