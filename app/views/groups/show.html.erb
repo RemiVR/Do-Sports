@@ -10,9 +10,11 @@
 	</div>
 	<div class="col-md-7" style="background: yellowgreen;">
 		<h1>Upcoming events </h1>
-		<% unless current_user.nil? || current_user.group_id != @group.id%>
+		<ul>
+			<li><% unless current_user.nil? || current_user.group_id != @group.id%>
 			<%= link_to("Add new Event", new_group_event_path(@group.id))%>
-		<%end%>
+			<%end%></li>
+		</ul>
 		<hr>
 		<ul>
 			<% @events.each do |event|%>
@@ -20,6 +22,8 @@
 			<h4><li><%= event.date%></li></h4>
 			<% unless current_user.nil? || current_user.group_id != @group.id%>
 				<%= link_to("Event details", event_path(event))%>
+				<br>
+				<%= link_to("Edit", edit_event_path(event))%>
 				<%end%>
 			<%end%>
 			<br>

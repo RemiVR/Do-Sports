@@ -19,6 +19,21 @@ class EventsController < ApplicationController
 		end
 	end
 
+
+	def edit
+		@event = Event.find(params[:id])
+	end
+
+	def update
+		@event = Event.find(params[:id])
+		if @event.update_attributes event_params
+			redirect_to group_path(@event.group_id)
+		else
+			render 'edit'
+		end
+	end
+
+
 	private
 
 	def event_params

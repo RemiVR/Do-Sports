@@ -35,16 +35,16 @@ ActiveRecord::Schema.define(version: 20150226102034) do
     t.string   "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer  "admin_id"
   end
 
   create_table "users", force: :cascade do |t|
     t.string   "name"
-    t.datetime "created_at",                      null: false
-    t.datetime "updated_at",                      null: false
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
     t.string   "email"
     t.string   "password_digest"
     t.integer  "group_id"
-    t.boolean  "admin",           default: false
   end
 
 end

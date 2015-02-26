@@ -1,5 +1,4 @@
 class GroupsController < ApplicationController
-	helper_method :join_group
 
 	def index
 		@group = Group.all
@@ -12,9 +11,6 @@ class GroupsController < ApplicationController
 		@events = @group.events
 	end
 
-	def new
-		@group = Group.new
-	end
 
 	def join_new_group
 		@group = Group.find(params[:id])
@@ -28,8 +24,13 @@ class GroupsController < ApplicationController
 		redirect_to group_path(@group.id)
 	end
 
+	def new
+		@group = Group.new
+	end
+
 	def create
 		@group = Group.new(group_params)
+		@group.admin_id = current_user.id
 		if @group.save
 			redirect_to '/'
 		else
@@ -41,6 +42,9 @@ class GroupsController < ApplicationController
 
 	def group_params
 		params.require(:group).permit(:name)
+	end
+	def admin_user
+		@admin_user = Group.admin_id
 	end
 
 end
