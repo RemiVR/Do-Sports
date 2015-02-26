@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
 	before_filter :authorize, except: [:new, :create, :show]
+	before_action :admin, only: [:edit, :update, :destroy]
 	before_action :set_user, only: [:show, :edit, :update, :destroy]
 
 	def show
@@ -38,6 +39,10 @@ class UsersController < ApplicationController
 	def set_user
 		@user = User.find(params[:id])
 	end
+
+	def admin_user
+      redirect_to groups_path unless current_user.admin?
+    end
 
 	def user_params
 		params.require(:user).permit(:name, :email, :password, :password_confirmation)
