@@ -33,7 +33,6 @@ class GroupsController < ApplicationController
 		@group.admin_id = current_user.id
 		if @group.save
 			current_user.join_group(@group.id)
-			redirect_to '/'
 		else
 			render 'new'
 		end
