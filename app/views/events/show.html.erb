@@ -1,23 +1,28 @@
 <div class="container">
-<h3>Description</h3>
-<p>this is the description of the event</p>
-<hr>
-<table class="table table-hover">
-	<thead>
-		<td>id of Attendant</td>
-	</thead>
-		<% @event.users.each do |user|%>
-	<tbody>
-		<td><%= user.name%></td>
-	</tbody>
-		<%end%>
-</table>
-	<%= flash[:error]%><br>
-	<br>
-	<% unless current_user.group_id == @event.id%>
-		<%= link_to("Attend", create_attendance_path(@event.id), method: :post)%>
-	<%end%>
-	<br>
-<%= link_to("back", groups_path)%>
-<br>
+	<div class="row">
+		<div class="col-md-6">
+			<h3>Description</h3>
+			<p>this is the description of the event</p>
+		</div>
+		<div class="col-md-3">
+			<table class="table">
+			<thead>
+				<td>Name of attendant</td>
+
+			</thead>
+				<% @event.users.each do |user|%>
+			<tbody>
+				<td><%= link_to(user.name, user_path(user.id))%></td>
+			</tbody>
+				<%end%>
+			</table>
+			<%= link_to("Attend", create_attendance_path(@event.id), method: :post)%>
+		</div>
+
+		<%= flash[:error]%><br>
+		<br>
+		<br>
+		<br>
+	</div>
+	<%= link_to("back", groups_path)%>
 </div>
