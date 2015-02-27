@@ -16,13 +16,16 @@
 			</tbody>
 				<%end%>
 			</table>
-					<%= link_to("Attend", create_attendance_path(@event.id), method: :post)%>
+				<% unless @event.users.size == @event.max_size %>
+					<%= link_to("Join", create_attendance_path(@event.id), method: :post)%>
+					<% end %>
+					<% if @attendance.include? current_user.id %>
+					<%= link_to("Leave", destroy_attendance_path(@event.id), method: :delete)%>
+					<% end %>
 		</div>
-
-		<%= flash[:error]%><br>
 		<br>
 		<br>
 		<br>
 	</div>
-	<%= link_to("back", groups_path)%>
+	<%= link_to("back", group_path(@event.group_id))%>
 </div>

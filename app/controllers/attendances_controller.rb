@@ -1,5 +1,5 @@
 class AttendancesController < ApplicationController
-	before_filter :authorize, only: [:new, :create]
+	before_filter :authorize, only: [:new, :create, :destroy]
 
 	def new
 		@event = Event.find(params[:id])
@@ -11,8 +11,13 @@ class AttendancesController < ApplicationController
 		if @attendance.save
 			redirect_to event_path(params[:id])
 		else
-			flash[:error] = @attendance.errors[:message].first
 			redirect_to event_path(params[:id])
 		end
+	end
+
+	def destroy
+		@attendance = Attendance.where({user_id: current_user.id, event_id: params[:id]}).first
+		@attendance.destroy
+		redirect_to event_path(params[:id])
 	end
 end

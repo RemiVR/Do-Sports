@@ -8,7 +8,7 @@
 		<h4> Attendence </h4>
 		<h4> goals scored </h4>
 	</div>
-	<div class="col-md-8" style="background: yellowgreen;">
+	<div class="col-md-7" style="background: yellowgreen;">
 		<h1>Upcoming events </h1>
 				<ul>
 					<li><%unless current_user.nil?%>
@@ -37,7 +37,7 @@
 		<button><%= link_to("Back", '/')%></button>
 	</div>
 
-	<div class="col-md-2" style="background: pink;">
+	<div class="col-md-3" style="background: pink;">
 		<h3>The list of users!</h3>
 		<p> This group have <%= @users_count%> users.</p>
 		<ul>
@@ -45,6 +45,7 @@
 			<h4><li><%= link_to(user.name, user_path(user.id))%></li></h4><hr>
 			<%end%>
 		</ul>
+
 		<br>
 		<% unless current_user.nil? %>
 			<% if @group.admin_id == current_user.id %>

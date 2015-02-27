@@ -6,16 +6,8 @@ class Event < ActiveRecord::Base
 	validates :title, presence: true
 	validates :date, presence: true
 	validates :group, presence: true
-	# validate_on_create :attendance_count_within_bounds
 	
 	validates_each :users do |event, attr, value|
 	  event.errors.add attr, "too much attendees for event" if event.users.size >= event.max_size
 	 end
-
-	private
-
-	 # def attendance_count_within_bounds
-  #    	return if attendances.blank?
-  #    	errors.add("Event is full!") if attendances.size > 10
-  # 	 end
 end

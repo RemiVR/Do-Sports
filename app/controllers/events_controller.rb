@@ -1,7 +1,9 @@
 class EventsController < ApplicationController
 	def show
 		@event = Event.find(params[:id])
-		@attendance = @event.attendances
+		@attendance = @event.attendances.map do |attendance|
+			attendance.user_id
+		end
 	end
 	
 	def new
@@ -42,6 +44,6 @@ class EventsController < ApplicationController
 	private
 
 	def event_params
-		params.require(:event).permit(:title, :date)
+		params.require(:event).permit(:title, :max_size, :date)
 	end
 end

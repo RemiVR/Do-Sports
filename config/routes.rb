@@ -12,6 +12,7 @@ Rails.application.routes.draw do
   post '/users' => 'users#create'
 #attendance
   post '/event/:id/add_attendant' => 'attendances#create', as: 'create_attendance'
+  delete '/event/:id/delete_attendant' => 'attendances#destroy', as: 'destroy_attendance'
 
   resources :groups do
     resources :events, :only => [:index, :create, :new]
