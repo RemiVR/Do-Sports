@@ -1,12 +1,15 @@
 <%= form_for(@event, url: group_events_path) do |f|%>
 	<%= f.label :title%>
 	<%= f.text_field :title%>
-	<br>
+	<hr>
 	<%= f.label :max_size%>
 	<%= f.text_field :max_size%>
-	<br>
+	<hr>
 	<%= f.label :date%>
 	<%= f.datetime_select :date%>
-	<br>
+	<hr>
+	<%= f.label :description%><br>
+	<%= f.text_area :description, :cols => 70, :rows => 7, :placeholder => "Description and some rules of the event"%>
+	<hr>
 	<%= f.submit 'Create'%>
 <%end%>

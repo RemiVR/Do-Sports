@@ -1,11 +1,11 @@
 <%= form_for @group do |f|%>
 	<%= f.label :name %>
 	<%= f.text_field :name %>
-	<br>
+	<hr>
 	<%= f.select(:sport_id, @sports.collect {|sport| [sport.title, sport.id]}) %>
-	<br>
+	<hr>
 	<%= f.submit 'Create' %>
-	<br>
+	<hr>
 <%end%>
 <br>
 <%= link_to("Back", '/', style: "btn btn-default")%>

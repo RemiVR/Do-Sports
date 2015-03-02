@@ -1,3 +1,11 @@
+<%if @event.errors.any?%>
+<ul>
+	<%@event.errors.full_messages.each do |error_msg|%>
+	<li><%= error_msg %></li>
+	<%end%>
+</ul>
+<%end%>
+
 <%= form_for(@event, url: event_path) do |f|%>
 	<%= f.label :title%>
 	<%= f.text_field :title%>
@@ -8,5 +16,8 @@
 	<%= f.label :date%>
 	<%= f.datetime_select :date%>
 	<br>
+	<%= f.label :description%><br>
+	<%= f.text_area :description, :cols => 70, :rows => 7, :placeholder => "Description and some rules of the event"%>
+	<hr>
 	<%= f.submit 'Update'%>
 <%end%>
