@@ -10,7 +10,9 @@
 	</div>
 	<div class="col-md-7" style="background: yellowgreen;">
 		<h1>This is <%= @group.name%> group!</h1>
-		<%= image_tag @group.logo.url(:medium) %><h3>Type of sport: <%= @sport%></h3>
+		<%= image_tag @group.logo.url(:medium) %><%= @group.description%>
+		<h4>Type of sport: <%= @sport%></h4>
+		<hr>
 		<h1>Upcoming events </h1>
 				<ul>
 					<li><%unless current_user.nil?%>
