@@ -67,7 +67,7 @@ class GroupsController < ApplicationController
 	private
 
 	def group_params
-		params.require(:group).permit(:name, :sport_id)
+		params.require(:group).permit(:name, :sport_id, :logo)
 	end
 	def admin_user
 		@admin_user = Group.admin_id
