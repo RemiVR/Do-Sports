@@ -2,6 +2,8 @@
 	<%= f.label :name %>
 	<%= f.text_field :name %>
 	<hr>
+	<%= f.area_field :description, :cols => 70, :rows => 7, :placeholder => "Write something about yourself"%>
+	<hr>
 	<%= f.select(:sport_id, @sports.collect {|sport| [sport.title, sport.id]}) %>
 	<hr>
 	<%= f.label :logo%>
