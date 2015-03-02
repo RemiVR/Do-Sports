@@ -9,6 +9,7 @@
 		<h4> goals scored </h4>
 	</div>
 	<div class="col-md-7" style="background: yellowgreen;">
+		<h3><%= @sport%></h3>
 		<h1>Upcoming events </h1>
 				<ul>
 					<li><%unless current_user.nil?%>
@@ -47,7 +48,7 @@
 				<%end%>
 				<br>
 				</ul>
-		<button><%= link_to("Back", '/')%></button>
+			<%= link_to("Back", '/')%>
 	</div>
 
 	<div class="col-md-3">

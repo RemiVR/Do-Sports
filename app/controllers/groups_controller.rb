@@ -9,6 +9,7 @@ class GroupsController < ApplicationController
 		@users = @group.users
 		@users_count = @users.count
 		@events = @group.events
+		@sport = @group.sport.title
 	end
 
 
@@ -25,6 +26,7 @@ class GroupsController < ApplicationController
 	end
 
 	def new
+		@sports = Sport.all
 		@group = Group.new
 	end
 
@@ -51,7 +53,7 @@ class GroupsController < ApplicationController
 	private
 
 	def group_params
-		params.require(:group).permit(:name)
+		params.require(:group).permit(:name, :sport_id)
 	end
 	def admin_user
 		@admin_user = Group.admin_id
