@@ -17,11 +17,13 @@
 				<%end%>
 			</table>
 				<% unless @event.users.size == @event.max_size %>
-					<%= link_to("Join", create_attendance_path(@event.id), method: :post)%>
+					<% if @attendance.exclude? current_user.id %>
+						<%= link_to("Join", create_attendance_path(@event.id), method: :post)%>
+						<% end %>
 					<% end %>
 					<% if @attendance.include? current_user.id %>
-					<%= link_to("Leave", destroy_attendance_path(@event.id), method: :delete)%>
-					<% end %>
+						<%= link_to("Leave", destroy_attendance_path(@event.id), method: :delete)%>
+				<% end %>
 		</div>
 		<br>
 		<br>

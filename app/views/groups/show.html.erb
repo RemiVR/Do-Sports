@@ -17,6 +17,19 @@
 					<%end%></li>
 					<%end%>
 				</ul>
+				<div class="dropdown">
+  <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-expanded="true">
+		Group panel
+    <span class="caret"></span>
+  </button>
+  <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
+  	<li role="presentation" class="dropdown-header">Dropdown header</li>
+    <li role="presentation"><a role="menuitem" tabindex="-1" >Edit event</a></li>
+    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Another action</a></li>
+    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Something else here</a></li>
+    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Separated link</a></li>
+  </ul>
+</div>
 				<hr>
 				<ul>
 				<% @events.each do |event|%>
@@ -25,11 +38,11 @@
 					<% unless current_user.nil? || current_user.group_id != @group.id%>
 						<%= link_to("Event details", event_path(event))%>
 						<br>
+					<%end%>
 
 					<% if current_user.nil? || current_user.id == @group.admin_id%>
 						<%= link_to("Edit", edit_event_path(event))%>
 						<%= link_to("Delete", event_path(event), method: :delete)%>
-						<%end%>
 					<%end%>
 				<%end%>
 				<br>
@@ -37,16 +50,9 @@
 		<button><%= link_to("Back", '/')%></button>
 	</div>
 
-	<div class="col-md-3" style="background: pink;">
+	<div class="col-md-3">
 		<h3>The list of users!</h3>
 		<p> This group have <%= @users_count%> users.</p>
-		<ul>
-			<% @users.each do |user|%>
-			<h4><li><%= link_to(user.name, user_path(user.id))%></li></h4><hr>
-			<%end%>
-		</ul>
-
-		<br>
 		<% unless current_user.nil? %>
 			<% if @group.admin_id == current_user.id %>
 				<%= link_to("Edit", edit_group_path(@group.id))%>
@@ -57,6 +63,13 @@
 				<%= link_to("Join", join_group_path(@group.id), method: :post)%>
 			<% end %>
 		<%end%>
+		<ul>
+			<% @users.each do |user|%>
+			<h4><li><img src="http://www.fun2smiles.com/wp-content/uploads/2014/10/Funny-Animals-Pictures-10.jpg" height="30px" width="35px"><%= link_to(user.name, user_path(user.id))%></li></h4><hr>
+			<%end%>
+		</ul>
+
+		<br>
 	</div>
 		<br>
 	</div>
