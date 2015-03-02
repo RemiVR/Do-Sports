@@ -64,7 +64,7 @@
 		<%end%>
 		<ul>
 			<% @users.each do |user|%>
-			<h4><li><img src="http://www.fun2smiles.com/wp-content/uploads/2014/10/Funny-Animals-Pictures-10.jpg" height="30px" width="35px"><%= link_to(user.name, user_path(user.id))%></li></h4><hr>
+			<%= image_tag user.photo.url(:thumb) %><%= link_to(user.name, user_path(user.id))%></li></h4><hr>
 			<%end%>
 		</ul>
 

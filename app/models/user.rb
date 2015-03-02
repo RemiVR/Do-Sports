@@ -7,6 +7,9 @@ class User < ActiveRecord::Base
 	validates :name, presence: true, length: { in: 2..255 }
 	validates :email, presence: true, uniqueness: true, format: { with: /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i, on: :create }
 
+	has_attached_file :photo, styles: {:medium => "200x200>", :thumb => "34x34>"}
+  	validates_attachment_content_type :photo, :content_type => /\Aimage\/.*\Z/
+
 	def join_group(new_group_id)
 		self.group_id = new_group_id
 		self.save
