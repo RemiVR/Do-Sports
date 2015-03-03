@@ -2,6 +2,7 @@ class GroupsController < ApplicationController
 
 	def index
 		@group = Group.all
+		@event = Event.all
 	end
 	
 	def show
@@ -10,7 +11,6 @@ class GroupsController < ApplicationController
 		@users_count = @users.count
 		@events = @group.events
 		@sport = @group.sport.title
-		@logged_in_user = current_user
 	end
 
 

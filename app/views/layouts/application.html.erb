@@ -7,9 +7,9 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-<header class="container">
+<header class="my_header">
 	<div class="row">
-		<div class="col-md-7">
+		<div class="col-md-7 col-md-offset-1">
 		<h1><%=link_to("Do sport!", '/')%></h1>
 		</div>
 		<% if current_user %>
@@ -17,7 +17,7 @@
 	  		Signed in as <%= link_to(current_user.name, user_path(current_user.id))%>  <%= link_to "Logout", '/logout', :class => "btn btn-danger" %>
 	  	</div>
 		<%else%>
-		<div class="col-md-5 pull-right">
+		<div class="col-md-4 pull-right">
 			<div class="form-inline">
 	  		<div class="form-group">
 					<%= flash[:error]%>
@@ -32,8 +32,16 @@
 		</div>
 	</div>
 	<%end%>
+	<div class="col-md-5 col-md-offset-1">
+		<ul class="nav nav-tabs">
+		  <li role="presentation"><a href="#">Home</a></li>
+		  <li role="presentation"><a href="#">Groups</a></li>
+		  <li role="presentation"><a href="#">Events</a></li>
+		  <li role="presentation"><a href="#">About us</a></li>
+		</ul>
+	</div>
+	
 </header>
-	<hr>
 	<div class="container">
 		<%= yield %>
 	</div>

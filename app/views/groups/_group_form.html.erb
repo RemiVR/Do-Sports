@@ -11,9 +11,9 @@
 				<%= f.label :logo%>
 				<%= f.file_field :logo%>
 				<br>
-				<%= f.submit 'Submit' %>
+				<%= f.submit 'Submit', :class => "btn btn-success" %>
 				<br>
-			<%end%>
-<br>
-<%= link_to("Back", '/')%>
+			<% end %>
+			<br>
+<%= link_to("Back", '/', :class => "btn btn-default")%>
 

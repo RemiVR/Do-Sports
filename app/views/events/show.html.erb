@@ -1,6 +1,6 @@
 <div class="container">
 	<div class="row">
-		<div class="col-md-3" style="background: pink;">
+		<div class="col-md-3 members_field">
 			<table class="table">
 			<thead>
 				<td>People attending</td>
@@ -21,10 +21,10 @@
 						<%= link_to("Leave", destroy_attendance_path(@event.id), method: :delete, :class => "btn btn-danger")%>
 				<% end %>
 		</div>
-		<div class="col-md-9" style="background: yellowgreen;">
+		<div class="col-md-9 front_field">
 			<h3>Description</h3>
 			<p><%= @event.description%></p>
+			<%= link_to("back", group_path(@event.group_id), :class => "btn btn-default")%>
 		</div>
 	</div>
 </div>
-	<%= link_to("back", group_path(@event.group_id))%>

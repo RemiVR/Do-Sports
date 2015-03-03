@@ -1,24 +1,31 @@
 <div class="container">
 	<div class="row">
-		<div class="col-md-3" style="background: pink;">
+		<div class="col-md-3 members_field">
 			<br>
-			<% unless current_user.nil? %>
-				<%end%>
 				<ul>
+				<% unless current_user.nil? %>
+					<% @event.each do |event|%>
+					<li><%= event.title %></li>
+					<br>
+					<% end %>
+				<% end %>
 			</ul>
 		</div>
 
 
 		<div class="col-md-9 front_field">
-			<h1>Yea! This is a list of all groups</h1>
-		<ul>
-			<% @group.each do |group|%>
-				<li><%= image_tag group.logo.url(:medium)%><%= link_to(group.name, group_path(group))%></li>
-			<%end%>
-		</ul>
-			<% unless current_user.nil? || current_user.group_id != nil%>
-				<%= link_to("Add new group", new_group_path)%>
-			<%end%>
+			<h1>List of groups</h1>
+			<br>
+			<ul>
+				<% @group.each do |group|%>
+					<li><%= image_tag group.logo.url(:medium)%><%= link_to(group.name, group_path(group))%></li>
+				<p> This group have <%= @users_count%> users.</p>
+					<hr>
+				<% end %>
+			</ul>
+				<% unless current_user.nil? || current_user.group_id != nil%>
+					<%= link_to("Add new group", new_group_path)%>
+				<% end %>
 		</div>
 	</div>
 </div>
