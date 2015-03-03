@@ -1,3 +1,15 @@
-// Place all the styles related to the groups controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
+/*// Place all the styles related to the groups controller here.*/
+/*// They will automatically be included in application.css.*/
+/*// You can use Sass (SCSS) here: http://sass-lang.com/*/
+
+body{
+	background-image: url(/assets/child.jpg);
+	-webkit-background-size: cover;
+  	-moz-background-size: cover;
+  	-o-background-size: cover;
+  	background-size: cover;
+  	list-style-type: none;
+}
+.front_field{
+	background-color:rgba(255,232,207,0.6);
+}

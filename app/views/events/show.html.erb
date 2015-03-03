@@ -1,13 +1,9 @@
 <div class="container">
 	<div class="row">
-		<div class="col-md-6">
-			<h3>Description</h3>
-			<p><%= @event.description%></p>
-		</div>
-		<div class="col-md-3">
+		<div class="col-md-3" style="background: pink;">
 			<table class="table">
 			<thead>
-				<td>Name of attendant</td>
+				<td>People attending</td>
 				<td>(<%= @event.users.size%>/<%= @event.max_size%>)</td>
 			</thead>
 				<% @event.users.each do |user|%>
@@ -18,16 +14,17 @@
 			</table>
 				<% unless @event.users.size == @event.max_size %>
 					<% if @attendance.exclude? current_user.id %>
-						<%= link_to("Join", create_attendance_path(@event.id), method: :post)%>
+						<%= link_to("Join", create_attendance_path(@event.id), method: :post, :class => "btn btn-success")%>
 						<% end %>
 					<% end %>
 					<% if @attendance.include? current_user.id %>
-						<%= link_to("Leave", destroy_attendance_path(@event.id), method: :delete)%>
+						<%= link_to("Leave", destroy_attendance_path(@event.id), method: :delete, :class => "btn btn-danger")%>
 				<% end %>
 		</div>
-		<br>
-		<br>
-		<br>
+		<div class="col-md-9" style="background: yellowgreen;">
+			<h3>Description</h3>
+			<p><%= @event.description%></p>
+		</div>
 	</div>
-	<%= link_to("back", group_path(@event.group_id))%>
 </div>
+	<%= link_to("back", group_path(@event.group_id))%>

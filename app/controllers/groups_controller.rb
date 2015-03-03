@@ -2,7 +2,6 @@ class GroupsController < ApplicationController
 
 	def index
 		@group = Group.all
-		@logged_in_user = current_user
 	end
 	
 	def show

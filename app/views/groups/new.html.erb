@@ -1,17 +1,2 @@
-<%= form_for @group, :html => { :multipart => true } do |f| %>
-	<%= f.label :name %>
-	<%= f.text_field :name %>
-	<hr>
-	<%= f.text_area :description, :cols => 70, :rows => 7, :placeholder => "Write something about yourself"%>
-	<hr>
-	<%= f.select(:sport_id, @sports.collect {|sport| [sport.title, sport.id]}) %>
-	<hr>
-	<%= f.label :logo%>
-	<%= f.file_field :logo%>
-	<hr>
-	<%= f.submit 'Create' %>
-	<hr>
-<%end%>
-<br>
-<%= link_to("Back", '/', style: "btn btn-default")%>
-
+<h1>Create a group</h1>
+<%= render 'group_form'%>

@@ -1,21 +1,7 @@
 <div class="container">
 	<div class="row">
 		<div class="col-md-3" style="background: pink;">
-			<h3>The list of users!</h3>
-			<h3>User Profile</h3>
-			<ul>
-				<%= flash[:notice]%>
-				<%= image_tag @logged_in_user.photo.url(:medium) %>
-				<li><%= @logged_in_user.name%></li>
-				<li><%= @logged_in_user.email%></li>
-				<li><%= @logged_in_user.birthday%></li>
-			</ul>
 			<br>
-			<% unless current_user.nil? || @logged_in_user.id != current_user.id%>
-				<%= link_to("Edit", edit_user_path(:id))%>
-			<%end%>
-
-			<p> This group have <%= @users_count%> users.</p>
 			<% unless current_user.nil? %>
 				<%end%>
 				<ul>
@@ -23,12 +9,13 @@
 		</div>
 
 
-		<div class="col-md-9" style="background: yellowgreen;">
+		<div class="col-md-9 front_field">
 			<h1>Yea! This is a list of all groups</h1>
-
+		<ul>
 			<% @group.each do |group|%>
-				<h2><%= link_to(group.name, group_path(group))%></h2>
+				<li><%= image_tag group.logo.url(:medium)%><%= link_to(group.name, group_path(group))%></li>
 			<%end%>
+		</ul>
 			<% unless current_user.nil? || current_user.group_id != nil%>
 				<%= link_to("Add new group", new_group_path)%>
 			<%end%>
