@@ -1,19 +1,14 @@
-<div class="container">
-	<div class="row">
-		<div class="col-md-5">
-			<%= form_for @group, :html => { :multipart => true } do |f| %>
-				<%= f.text_field :name, :class => "form-control", placeholder: "name"%>
-				<br>
-				<%= f.text_area :description, :cols => 70, :rows => 7, :class => "form-control", :placeholder => "Write something about yourself"%>
-				<br>
-				<%= f.select(:sport_id, @sports.collect {|sport| [sport.title, sport.id]}) %>
-				<br>
-				<%= f.label :logo%>
-				<%= f.file_field :logo%>
-				<br>
-				<%= f.submit 'Submit', :class => "btn btn-success" %>
-				<br>
-			<% end %>
-			<br>
-<%= link_to("Back", '/', :class => "btn btn-default")%>
 
+<%= form_for @group, :html => { :multipart => true } do |f| %>
+	<%= f.text_field :name, :class => "form-control", placeholder: "name"%>
+	<br>
+	<%= f.text_area :description, :cols => 70, :rows => 7, :class => "form-control", :placeholder => "Write something about yourself"%>
+	<br>
+	<%= f.select(:sport_id, @sports.collect {|sport| [sport.title, sport.id]}) %>
+	<br>
+	<%= f.label :logo%>
+	<%= f.file_field :logo%>
+	<br>
+	<%= f.submit 'Submit', :class => "btn btn-success" %>
+	<br>
+<% end %>

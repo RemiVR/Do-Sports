@@ -1,32 +1,53 @@
-<div class="container">
-	<div class="row">
-		<div class="col-md-3 members_field">
-			<br>
-				<ul>
-				<% unless current_user.nil? %>
-					<% @event.each do |event|%>
-					<li><%= event.title %></li>
-					<br>
+<div class="row">
+	<div class="col-md-3 members-field">
+		<br>
+		<h2><strong>Events this week</strong></h2>
+		<hr>
+				<% @event_news.each do |event|%>
+					<h3><%= link_to(event.title, group_path(event.group_id), :class => "link-color") %></h3>
+					<%unless event.id == nil%>
+						hosted by: <%= event.group.name %>
 					<% end %>
 				<% end %>
-			</ul>
-		</div>
+	</div>
 
+	<div class="col-md-9 front-field">
+		<div class="row search-field">
+      <ul class="nav navbar-nav">
+        <li class="dropdown">
+          <a href="#" class="btn-filter dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Filter by Sport<span class="caret"></span></a>
+          <ul class="dropdown-menu" role="menu">
+          	<li><a href="/">Show all</a></li>
+          	<% @sports.each do |sport|%>
+          		<li><%= link_to sport.title, root_path(filter: sport.title), :class => "" %></li>
+          	<% end %>
+          </ul>
+        </li>
+      </ul>
+      <form action="/" method="GET" class="navbar-form navbar-left" role="search">
+        <div class="form-group">
+          <input name="search" type="text" class="form-control" placeholder="Search">
+        </div>
+        <button type="submit" class="btn btn-default">Find</button>
+      </form>
+	  </div>
 
-		<div class="col-md-9 front_field">
-			<h1>List of groups</h1>
-			<br>
-			<ul>
-				<% @group.each do |group|%>
-					<li><%= image_tag group.logo.url(:medium)%><%= link_to(group.name, group_path(group))%></li>
-				<p> This group have <%= @users_count%> users.</p>
-					<hr>
-				<% end %>
-			</ul>
-				<% unless current_user.nil? || current_user.group_id != nil%>
-					<%= link_to("Add new group", new_group_path)%>
-				<% end %>
-		</div>
+    <br>
+		<h1>List of groups</h1>
+					<% unless current_user.nil? || current_user.group_id != nil%>
+						<a href="#" class="btn btn-default" id="add-new-group">Add new group</a>
+						<%= render 'group_form' %>
+					<% end %>
+		<br>
+				<ul>
+					<% @groups.each do |group|%>
+			<div class="article-field" id="groups">
+						<%= link_to(image_tag(group.logo.url(:medium)), group_path(group))%>
+						<%= link_to(group.name, group_path(group), :class => "group-name")%>
+					<p> This group have <%= @users_count%> users.</p>
+			</div>
+					<% end %>
+				</ul>
 	</div>
 </div>
 

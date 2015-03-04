@@ -8,6 +8,7 @@ class Event < ActiveRecord::Base
 	validates :group, presence: true
 	
 	validates_each :users do |event, attr, value|
+	  next if event.max_size.nil? 
 	  event.errors.add attr, "are more attenging than a new limit" if event.users.size > event.max_size
 	 end
 end
