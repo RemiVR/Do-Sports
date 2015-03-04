@@ -18,18 +18,19 @@ body ul{
 }
 .my-header{
 	background-color: rgba(250,250,250,0.8);
-	margin-bottom: 15px;
+	margin-bottom: 1em;
 }
 .members-field{
 	background-color: rgba(250,250,250,0.8);
   	color: rgba(20,20,20,1);
 	font-family: 'Roboto Slab', serif;
+	padding: 1em 0 2.5em 0.6em;
 }
 .front-field{
 	background-color:rgba(235,245,245,0.8); 
   	color: rgba(10,25,25,1);
 	font-family: 'Roboto Slab', serif;
-	padding: 1px;
+	padding: 1em 0 2.5em 0.6em;
 }
 .group-name{
 	font-size: 30px;
