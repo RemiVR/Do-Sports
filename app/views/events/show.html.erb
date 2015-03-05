@@ -1,33 +1,32 @@
-<div class="container">
-	<div class="row">
-		<div class="col-md-6">
-			<h3>Description</h3>
-			<p><%= @event.description%></p>
-		</div>
-		<div class="col-md-3">
-			<table class="table">
-			<thead>
-				<td>Name of attendant</td>
-				<td>(<%= @event.users.size%>/<%= @event.max_size%>)</td>
-			</thead>
-				<% @event.users.each do |user|%>
-			<tbody>
-				<td><%= link_to(user.name, user_path(user.id))%></td>
-			</tbody>
-				<%end%>
-			</table>
-				<% unless @event.users.size == @event.max_size %>
-					<% if @attendance.exclude? current_user.id %>
-						<%= link_to("Join", create_attendance_path(@event.id), method: :post)%>
-						<% end %>
+<div class="row">
+	<div class="col-md-3 members-field">
+		<table class="table">
+		<thead>
+			<td>People attending</td>
+			<td>(<%= @event.users.size%>/<%= @event.max_size%>)</td>
+		</thead>
+			<% @event.users.each do |user|%>
+		<tbody>
+			<td><%= link_to(user.name, user_path(user.id))%></td>
+		</tbody>
+			<%end%>
+		</table>
+			<% unless @event.users.size == @event.max_size %>
+				<% if @attendance.exclude? current_user.id %>
+					<%= link_to("Attend", create_attendance_path(@event.id), method: :post, :class => "btn btn-success")%>
 					<% end %>
-					<% if @attendance.include? current_user.id %>
-						<%= link_to("Leave", destroy_attendance_path(@event.id), method: :delete)%>
 				<% end %>
-		</div>
-		<br>
-		<br>
-		<br>
+				<% if @attendance.include? current_user.id %>
+					<%= link_to("Decline", destroy_attendance_path(@event.id), method: :delete, :class => "btn btn-danger")%>
+			<% end %>
 	</div>
-	<%= link_to("back", group_path(@event.group_id))%>
+	<div class="col-md-9 front-field">
+		<h2>Event Details</h2>
+		<h4><%= @event.description%></h4>
+		<h3><%= @event.date%></h3>
+		<div>
+			<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d11971.899370323712!2d2.2026033864247716!3d41.39635270425999!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x12a4a3135a5530ef%3A0x7806456048b6d593!2sCEM+BOGATELL!5e0!3m2!1sen!2ses!4v1425502284080" width="600" height="450" frameborder="0" style="border:0"></iframe>
+		</div>
+		<%= link_to("back", group_path(@event.group_id), :class => "btn btn-info")%>
+	</div>
 </div>

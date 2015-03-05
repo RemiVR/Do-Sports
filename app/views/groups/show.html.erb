@@ -1,77 +1,83 @@
-<h2>This is an inside of the group page!</h2>
-<div class="container">
-	<div class="row">
-		<div class="col-md-2" style="background: skyblue;">
-		<h3>Statistics </h3>
-		<h4> Best rated </h4>
-		<h4> History </h4>
-		<h4> Attendence </h4>
-		<h4> goals scored </h4>
-	</div>
-	<div class="col-md-7" style="background: yellowgreen;">
-		<h1>This is <%= @group.name%> group!</h1>
-		<%= image_tag @group.logo.url(:medium) %><%= @group.description%>
-		<h4>Type of sport: <%= @sport%></h4>
+<div class="row">
+	<div class="col-md-3 members-field">
+		<h3>Members</h3>
 		<hr>
-		<h1>Upcoming events </h1>
-				<ul>
-					<li><%unless current_user.nil?%>
-						<% if current_user.id == @group.admin_id%>
-					<%= link_to("Add new Event", new_group_event_path(@group.id))%>
-					<%end%></li>
-					<%end%>
-				</ul>
-				<hr>
-				<ul>
-				<% @events.each do |event|%>
-			<div style="background: yellow; padding: 10px; margin:5px;">
-					<h2><li><%= event.title%></li></h2>
-					<h4><li><%= event.date%></li></h4>
-					<% unless current_user.nil? || current_user.group_id != @group.id%>
-						<%= link_to("Event details", event_path(event))%>
-						<br>
-					<%end%>
-
-					<% if current_user.nil? || current_user.id == @group.admin_id%>
-						<%= link_to("Edit", edit_event_path(event))%>
-						<%= link_to("Delete", event_path(event), method: :delete)%>
-					<%end%>
+		<% @users.each do |user|%>
+			<h4><%= image_tag user.photo.url(:thumb)%><%= user.name%></h4>
+		<% end %>
 			</div>
-				<%end%>
+			<div class="col-md-9 front-field">
+				<% unless current_user.nil?%>
+					<% if @group.admin_id == current_user.id %>
+						<div class="dropdown pull-right">
+		  					<button class="btn btn-warning dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-expanded="true"><span class="glyphicon glyphicon-cog" aria-hidden="true"></span><span class="caret"></span></button>
+			  				<ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
+			  					<li role="presentation" class="dropdown-header">Group menu</li>
+			    				<li role="presentation"><%= link_to("Edit", edit_group_path(@group.id))%></li>
+			    				<li role="presentation"><%= link_to("Delete", group_path(@group.id), method: :delete)%></li>
+			  				</ul>
+						</div>
+					<% end %>
+				<% end %>
+				<div class="media">
+						<div class="media-left">
+							<%= image_tag @group.logo.url(:thumb), :class => "img-rounded" %>
+						</div>
+						<div class="media-body">
+						<h1 class="media-heading"><%= @group.name%></h1>
+							<h6>Type of sport: <%= @sport%></h6>
+							<br>
+							<%= @group.description%>
+						</div>
+				</div>
 				<br>
-				</ul>
-			<%= link_to("Back", '/')%>
-	</div>
-
-	<div class="col-md-3" style="background: pink;">
-		<h3>The list of users!</h3>
-		<p> This group have <%= @users_count%> users.</p>
-		<% unless current_user.nil? %>
-			<% if @group.admin_id == current_user.id %>
-				<div class="dropdown">
-  				<button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-expanded="true">Group panel<span class="caret"></span></button>
-  				<ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
-  					<li role="presentation" class="dropdown-header">Dropdown header</li>
-    				<li role="presentation"><a role="menuitem" tabindex="-1" ><%= link_to("Edit", edit_group_path(@group.id))%></li>
-    				<li role="presentation"><a role="menuitem" tabindex="-1" ><%= link_to("Delete", group_path(@group.id), method: :delete)%></li>
-  				</ul>
-			</div>
-				<%= link_to("Edit", edit_group_path(@group.id))%>
-				<%= link_to("Delete", group_path(@group.id), method: :delete)%>
-			<% elsif @group.id == current_user.group_id %>
-				<%= link_to("Leave", leave_group_path, method: :post)%>
-			<% elsif current_user.group_id == nil %>
-				<%= link_to("Join", join_group_path(@group.id), method: :post)%>
-			<% end %>
-		<%end%>
-		<ul>
-			<% @users.each do |user|%>
-			<%= image_tag user.photo.url(:thumb) %><%= link_to(user.name, user_path(user.id))%></li></h4><hr>
-			<%end%>
-		</ul>
-
+				<% unless current_user.nil? || current_user.id == @group.admin_id%>
+					<% if @group.id == current_user.group_id %>
+						<%= link_to("Leave", leave_group_path, method: :post, :class => "btn btn-danger")%>
+					<% elsif current_user.group_id == nil %>
+						<%= link_to("Join", join_group_path(@group.id), method: :post, :class => "btn btn-success")%>
+					<% end %>
+				<% end %>
+				<hr>
+				<h2>Upcoming events </h2>
+					<ul>
+						<li>
+							<%unless current_user.nil?%>
+								<% if current_user.id == @group.admin_id%>
+									<%= link_to("Add new Event", new_group_event_path(@group.id))%>
+								<% end %>
+							<% end %>
+						</li>
+					</ul>
+					<ul>
+						<% @events.each do |event|%>
+							<div class="article-field">
+									<% unless current_user.nil? %>
+										<% if current_user.id == @group.admin_id %>
+											<div class="dropdown pull-right">
+					  							<button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-expanded="true"><span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
+					  								<span class="caret"></span></button>
+						  							<ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
+						  								<li role="presentation" class="dropdown-header">Event menu</li>
+						    							<li role="presentation"><a role="menuitem" tabindex="-1" ><%= link_to("Edit", edit_event_path(event))%></li>
+						    							<li role="presentation"><a role="menuitem" tabindex="-1" ><%= link_to("Delete", event_path(event), method: :delete)%></li>
+						  							</ul>
+											</div>
+										<% end %>
+									<% end %>
+									<h2><li><%= event.title%></li></h2>
+									<h4><li><%= event.description%></li></h4>
+									<% unless current_user.nil? %>
+										<% if current_user.group_id == @group.id %>
+											<%= link_to("Event Info", event_path(event), class: "nav-tabs-blue")%>
+										<% end %>
+									<% end %>
+							</div>
+						<% end %>
+						<br>
+					</ul>
+					<%= link_to("Back", '/', :class => "btn btn-default")%>
 		<br>
 	</div>
-		<br>
-	</div>
+	<br>
 </div>

@@ -1,13 +1,21 @@
 class GroupsController < ApplicationController
 
 	def index
-		@group = Group.all
+		@groups = Group.all
+		@group = Group.new
+		if !params[:search].nil?
+			@groups = Group.search(params[:search])
+		elsif !params[:filter].nil?
+			@groups = Group.where(sport: Sport.find_by(title: params[:filter]))
+		end
+		@event = Event.all
+		@sports = Sport.all
+		@event_news = Event.where(date: Date.today.beginning_of_day..Date.today.end_of_week).order("date ASC")
 	end
 	
 	def show
 		@group = Group.find(params[:id])
 		@users = @group.users
-		@users_count = @users.count
 		@events = @group.events
 		@sport = @group.sport.title
 	end
@@ -37,13 +45,14 @@ class GroupsController < ApplicationController
 			current_user.join_group(@group.id)
 			redirect_to group_path(@group.id)
 		else
-			render 'new'
+			redirect_to '/'
 		end
 	end
 
 	def edit
 		@sports = Sport.all
 		@group = Group.find(params[:id])
+		@users = @group.users
 	end
 
 	def update
@@ -57,6 +66,7 @@ class GroupsController < ApplicationController
 
 	def destroy
 		@group = Group.find(params[:id])
+		@group.events.destroy_all
 		@group.users.map do |user|
 			user.leave_group(@group.id)
 		end
@@ -65,7 +75,7 @@ class GroupsController < ApplicationController
 	end
 
 	private
-
+	
 	def group_params
 		params.require(:group).permit(:name, :sport_id, :logo, :description)
 	end

@@ -1,15 +1,15 @@
 <%= form_for(@event, url: group_events_path) do |f|%>
-	<%= f.label :title%>
-	<%= f.text_field :title%>
-	<hr>
+	<%= f.label :Event_title%>
+	<%= f.text_field :title, :class => "form-control", placeholder: "Event title"%>
+	<br>
 	<%= f.label :max_size%>
-	<%= f.text_field :max_size%>
-	<hr>
+	<%= f.text_field :max_size, :class => "form-control", placeholder: "name"%>
+	<br>
 	<%= f.label :date%>
-	<%= f.datetime_select :date%>
-	<hr>
+	<%= f.datetime_select :date, :class => "form-control"%>
+	<br>
 	<%= f.label :description%><br>
-	<%= f.text_area :description, :cols => 70, :rows => 7, :placeholder => "Description and some rules of the event"%>
+	<%= f.text_area :description, :cols => 70, :rows => 7, :class => "form-control", :placeholder => "Description of the event"%>
 	<hr>
-	<%= f.submit 'Create'%>
+	<%= f.submit 'Create', :class => "btn btn-default"%>
 <%end%>

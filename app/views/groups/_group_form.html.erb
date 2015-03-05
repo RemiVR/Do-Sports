@@ -1,0 +1,17 @@
+
+<%= form_for @group, :html => { :multipart => true } do |f| %>
+	<%= f.label :name%>
+	<%= f.text_field :name, :class => "form-control", placeholder: "name"%>
+	<br>
+	<%= f.label :description%>
+	<%= f.text_area :description, :cols => 70, :rows => 7, :class => "form-control", :placeholder => "Write something about yourself"%>
+	<br>
+	<%= f.label :type_of_sport%>
+	<%= f.select(:sport_id, @sports.collect {|sport| [sport.title, sport.id]}) %>
+	<br>
+	<%= f.label :logo%>
+	<%= f.file_field :logo%>
+	<br>
+	<%= f.submit 'Submit', :class => "btn btn-success" %>
+	<br>
+<% end %>
