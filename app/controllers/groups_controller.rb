@@ -75,7 +75,7 @@ class GroupsController < ApplicationController
 	end
 
 	private
-
+	
 	def group_params
 		params.require(:group).permit(:name, :sport_id, :logo, :description)
 	end

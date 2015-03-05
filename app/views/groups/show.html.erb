@@ -10,7 +10,7 @@
 				<% unless current_user.nil?%>
 					<% if @group.admin_id == current_user.id %>
 						<div class="dropdown pull-right">
-		  					<button class="btn btn-warning dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-expanded="true"><span class="glyphicon glyphicon-user" aria-hidden="true"></span><span class="caret"></span></button>
+		  					<button class="btn btn-warning dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-expanded="true"><span class="glyphicon glyphicon-cog" aria-hidden="true"></span><span class="caret"></span></button>
 			  				<ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
 			  					<li role="presentation" class="dropdown-header">Group menu</li>
 			    				<li role="presentation"><%= link_to("Edit", edit_group_path(@group.id))%></li>
@@ -66,7 +66,7 @@
 										<% end %>
 									<% end %>
 									<h2><li><%= event.title%></li></h2>
-									<h4><li><%= event.date%></li></h4>
+									<h4><li><%= event.description%></li></h4>
 									<% unless current_user.nil? %>
 										<% if current_user.group_id == @group.id %>
 											<%= link_to("Event Info", event_path(event), class: "nav-tabs-blue")%>

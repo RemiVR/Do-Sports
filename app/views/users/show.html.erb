@@ -10,9 +10,10 @@
 		<% end %>
 
 
+
 	</div>
 	<div class="col-md-9 front-field">
-		<div class="media">
+		<div class="media" id="profile">
 			<div class="media-left">
 				<%= image_tag @user.photo.url(:medium), :class => "img-rounded" %>
 			</div>
@@ -25,7 +26,8 @@
 			</div>
 		</div>
 		<% unless current_user.nil? || @user.id != current_user.id%>
-			<%= link_to("Edit", edit_user_path)%>
+			<a href="#" class="btn btn-default" id="edit-user">Edit</a>
+			<%= render 'user_form' %>
 		<%end%>			
 	</div>
 </div>

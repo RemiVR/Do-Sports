@@ -7,8 +7,22 @@ $(document).ready(function(){
 		$("#groups").hide();
 	});
 
+  $("form.edit_user").hide();
+
+  $("#edit-user").on("click", function(){
+    $("form.edit_user").show();
+    $("#profile").hide();
+    $("#edit-user").hide();
+  });
+  
+  $(".btn-cancel").on("click", function(){    
+    $("#profile").show();
+    $("#edit-user").show();
+    $("form.edit_user").hide();
+  })
 
 });
+
       // function initialize() {
       //   var mapCanvas = document.getElementById('map-canvas');
       //   var mapOptions = {

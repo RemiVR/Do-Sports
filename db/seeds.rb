@@ -5,11 +5,11 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
-# 10.times.with_index do |index|
-# 	User.create(name: 'blob', email: "remi#{index}@gmail.com", password: "1234", password_confirmation: "1234" )
-# end
-Sport.create(title: 'Football')
-Sport.create(title: 'Basketball')
-Sport.create(title: 'Volleyball')
-Sport.create(title: 'Tennis')
-Sport.create(title: 'Hockey')
+10.times.with_index do |index|
+	User.create(name: 'blob', email: "blob#{index}@gmail.com", password: "1234", password_confirmation: "1234" group_id: 1)
+end
+# Sport.create(title: 'Football')
+# Sport.create(title: 'Basketball')
+# Sport.create(title: 'Volleyball')
+# Sport.create(title: 'Tennis')
+# Sport.create(title: 'Hockey')

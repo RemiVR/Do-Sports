@@ -2,12 +2,12 @@
 	<div class="col-md-3 members-field">
 		<h2><strong>Events this week</strong></h2>
 		<hr>
-				<% @event_news.each do |event|%>
-					<h3><%= link_to(event.title, group_path(event.group_id), :class => "link-color") %></h3>
-					<%unless event.id == nil%>
-						hosted by: <%= event.group.name %>
-					<% end %>
+			<% @event_news.each do |event|%>
+				<h3><%= link_to(event.title, group_path(event.group_id), :class => "link-color") %></h3>
+				<%unless event.id == nil%>
+					hosted by: <%= event.group.name %>
 				<% end %>
+			<% end %>
 	</div>
 
 	<div class="col-md-9 front-field">
@@ -33,21 +33,30 @@
 
     <br>
 		<h1>List of groups</h1>
-					<% unless current_user.nil? || current_user.group_id != nil%>
-						<a href="#" class="btn btn-default" id="add-new-group">Add new group</a>
-						<%= render 'group_form' %>
-					<% end %>
+		<% unless current_user.nil? || current_user.group_id != nil%>
+			<a href="#" class="btn btn-default" id="add-new-group">Add new group</a>
+			<%= render 'group_form' %>
+		<% end %>
 		<br>
-				<ul>
-					<% @groups.each do |group|%>
-			<div class="article-field" id="groups">
-						<%= link_to(image_tag(group.logo.url(:medium)), group_path(group))%>
-						<%= link_to(group.name, group_path(group), :class => "group-name")%>
-					<p> This group have <%= @users_count%> users.</p>
+		<ul>
+			<div id="groups">
+				<% @groups.each do |group|%>
+					<div class="media article-field" id="profile">
+						<div class="media-left">
+							<%= link_to(image_tag(group.logo.url(:medium)), group_path(group))%>
+						</div>
+						<div class="media-body">
+						<h1 class="media-heading"><%= link_to(group.name, group_path(group), :class => "group-name")%></h1>
+							<br>
+							<%= group.description %>
+							<h4>This group has <%= group.users.count %> users.</h4>
+						</div>
+					</div>
+				<% end %>
 			</div>
-					<% end %>
-				</ul>
+		</ul>
 	</div>
 </div>
+
 
 
