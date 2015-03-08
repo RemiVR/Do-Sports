@@ -49,7 +49,8 @@
 						<h1 class="media-heading"><%= link_to(group.name, group_path(group), :class => "group-name")%></h1>
 							<br>
 							<%= group.description %>
-							<h4>This group has <%= group.users.count %> users.</h4>
+							<br>
+							<p>This group has <%= group.users.count %> users.</hp>
 						</div>
 					</div>
 				<% end %>
