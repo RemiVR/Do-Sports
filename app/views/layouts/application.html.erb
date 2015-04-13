@@ -8,12 +8,19 @@
 </head>
 <body>
 <header>
-	<div class="container my-header">
+	<div class="nav-tab">
 		<div class="row">
+			<div class="col-md-4 pull-left">
+				<ul class="nav nav-tabs">
+				  <li role="presentation"><a href="/">Home</a></li>
+				  <li role="presentation"><a href="">My Group</a></li>
+				  <li role="presentation"><a href="#">About us</a></li>
+				</ul>
+			</div>
 			<% if current_user %>
 				<div class="col-md-3 pull-right login-form">
-		  		Signed in as <%= link_to(image_tag(current_user.photo.url(:thumb), :class => "img-rounded"), user_path(current_user.id))%>  <%= link_to "Logout", '/logout', :class => "btn btn-danger" %>
-		  	</div>
+			  		Signed in as <%= link_to(image_tag(current_user.photo.url(:thumb), :class => "img-rounded"), user_path(current_user.id))%>  <%= link_to "Logout", '/logout', :class => "btn btn-danger" %>
+		  		</div>
 			<%else%>
 			<div class="col-md-5 pull-right login-form">
 				<div class="form-inline">
@@ -29,20 +36,16 @@
 				</div>
 			</div>
 		<%end%>
-			<div class="col-md-7">
-			<a href="/"><img src="/assets/finish_logo.png" height="160px"></a>
-			</div>
 		</div>
-			<div class="col-md-4 pull-left">
-				<ul class="nav nav-tabs">
-				  <li role="presentation"><a href="/">Home</a></li>
-				  <li role="presentation"><a href="">My Group</a></li>
-				  <li role="presentation"><a href="">Profile</a></li>
-				  <li role="presentation"><a href="#">About us</a></li>
-				</ul>
-			</div>
 			</form>
 		</div>
+		<div class="container">
+			<div class="row">
+					<div class="col-md-7">
+						<a href="/"><img src="/assets/finish_logo.png" height="160px"></a>
+					</div>
+			</div>
+		</div>	
 	</div>
 </header>
 	<div class="container">
@@ -54,14 +57,13 @@
 			<ul class="nav nav-tabs">
 			  	<li><a href="/">Home</a></li>
 			  	<li><a href="">My Group</a></li>
-			  	<li><a href="">Profile</a></li>
 			  	<li><a href="#">About us</a></li>
 			</ul>
 		</div>
 		<div class="col-md-1">
 			<h4>Find us on</h4>
-			<a href="#"><img src="http://www.stonesterrain.com/facebook-icon.png" height="38"></a>
-			<a href="#"><img src="http://www.registrar.umd.edu/images/master/twitter_icon.png" height="38"></a>
+			<a href="#"><img src="http://www.stonesterrain.com/facebook-icon.png" height="34"></a>
+			<a href="#"><img src="http://www.registrar.umd.edu/images/master/twitter_icon.png" height="34"></a>
 		</div>
 	</div>
 </footer>

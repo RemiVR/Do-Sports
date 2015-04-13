@@ -9,15 +9,14 @@ body{
   	-o-background-size: cover;
   	background-size: cover;
 }
-
 body ul{
 	list-style-type: none;
 }
 .link_to{
 	color: white;
 }
-.my-header{
-	background-color: rgba(250,250,250,0.9);
+.nav-tab{
+	background-color: white;
 	margin-bottom: 1em;
 }
 .my-footer{
@@ -38,7 +37,7 @@ body ul{
 	padding: 1em 0 2.5em 0.6em;
 }
 .group-name{
-	font-size: 30px;
+	font-size: 1.2em;
 	color: black;
 }
 .link-color{
@@ -53,14 +52,17 @@ body ul{
 }
 .article-field{
 	background-color: rgba(255,255,255,1);
-	margin-bottom: 10px;
-	padding: 10px 0 0 10px;
-	border-bottom: 5px solid #00A9E5;
+	margin-bottom: 0.8em;
+	padding: 1em 0 0 1em;
+	border-bottom: 0.3em solid #00A9E5;
 }
 .nav-tabs-blue{
 	background: #00A9E5;
-	padding: 6px;
-	border-radius: 10px 10px 0 0;
+	padding: 0.7em 0.7em 0.5em 0.7em;
+	color: white;
+}
+.nav-tabs-blue:hover{
+	color: white;
 }
 .btn-filter{
 	color: white;
@@ -72,8 +74,8 @@ body ul{
 	margin-top: 0;
 }
 #map-canvas{
-	height: 400px;
-	width: 500px;
+	height: 10em;
+	width: 14em;
 	background-color: #CCC;
 }
 .login-form{
@@ -81,5 +83,11 @@ body ul{
 	padding-top: 1.5em;
 }
 .btn-cancel{
-	padding-right: 1em,
+	padding-right: 1em;
+}
+.member-info{
+	color: white;
+	margin-bottom: 0.2em;
+	padding: 0.2em ;
+	background-color: #00A9E5;
 }

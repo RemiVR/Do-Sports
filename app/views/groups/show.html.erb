@@ -1,82 +1,88 @@
 <div class="row">
-	<div class="col-md-3 members-field">
+	<div class="col-md-3 members-field" >
 		<h3>Members</h3>
 		<hr>
-		<% @users.each do |user|%>
-			<h4><%= image_tag user.photo.url(:thumb)%><%= user.name%></h4>
-		<% end %>
-			</div>
-			<div class="col-md-9 front-field">
-				<% unless current_user.nil?%>
-					<% if @group.admin_id == current_user.id %>
-						<div class="dropdown pull-right">
-		  					<button class="btn btn-warning dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-expanded="true"><span class="glyphicon glyphicon-cog" aria-hidden="true"></span><span class="caret"></span></button>
-			  				<ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
-			  					<li role="presentation" class="dropdown-header">Group menu</li>
-			    				<li role="presentation"><%= link_to("Edit", edit_group_path(@group.id))%></li>
-			    				<li role="presentation"><%= link_to("Delete", group_path(@group.id), method: :delete)%></li>
-			  				</ul>
-						</div>
-					<% end %>
-				<% end %>
-				<div class="media">
-						<div class="media-left">
-							<%= image_tag @group.logo.url(:thumb), :class => "img-rounded" %>
-						</div>
-						<div class="media-body">
-						<h1 class="media-heading"><%= @group.name%></h1>
-							<h6>Type of sport: <%= @sport%></h6>
-							<br>
-							<%= @group.description%>
-						</div>
+			<% @users.each do |user|%>
+				<div class="member-info">
+					<h4><%= image_tag user.photo.url(:thumb)%><%= user.name%></h4>
+					<ul class="selected-member">
+						<li><%= user.email%></li>
+						<li><%= user.birthday%></li>
+					</ul>
 				</div>
-				<br>
-				<% unless current_user.nil? || current_user.id == @group.admin_id%>
-					<% if @group.id == current_user.group_id %>
-						<%= link_to("Leave", leave_group_path, method: :post, :class => "btn btn-danger")%>
-					<% elsif current_user.group_id == nil %>
-						<%= link_to("Join", join_group_path(@group.id), method: :post, :class => "btn btn-success")%>
+			<% end %>
+	</div>
+	<div class="col-md-9 front-field">
+		<% unless current_user.nil?%>
+			<% if @group.admin_id == current_user.id %>
+				<div class="dropdown pull-right">
+						<button class="btn btn-warning dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-expanded="true"><span class="glyphicon glyphicon-cog" aria-hidden="true"></span><span class="caret"></span></button>
+	  				<ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
+	  					<li role="presentation" class="dropdown-header">Group menu</li>
+	    				<li role="presentation"><%= link_to("Edit", edit_group_path(@group.id))%></li>
+	    				<li role="presentation"><%= link_to("Delete", group_path(@group.id), method: :delete)%></li>
+	  				</ul>
+				</div>
+			<% end %>
+		<% end %>
+		<div class="media">
+				<div class="media-left">
+					<%= image_tag @group.logo.url(:thumb), :class => "img-rounded" %>
+				</div>
+				<div class="media-body">
+				<h1 class="media-heading"><%= @group.name%></h1>
+					<h6>Type of sport: <%= @sport%></h6>
+					<br>
+					<%= @group.description%>
+				</div>
+		</div>
+		<br>
+		<% unless current_user.nil? || current_user.id == @group.admin_id%>
+			<% if @group.id == current_user.group_id %>
+				<%= link_to("Leave", leave_group_path, method: :post, :class => "btn btn-danger")%>
+			<% elsif current_user.group_id == nil %>
+				<%= link_to("Join", join_group_path(@group.id), method: :post, :class => "btn btn-success")%>
+			<% end %>
+		<% end %>
+		<hr>
+		<h2>Upcoming events </h2>
+			<ul>
+				<li>
+					<%unless current_user.nil?%>
+						<% if current_user.id == @group.admin_id%>
+							<%= link_to("Add new Event", new_group_event_path(@group.id))%>
+						<% end %>
 					<% end %>
-				<% end %>
-				<hr>
-				<h2>Upcoming events </h2>
-					<ul>
-						<li>
-							<%unless current_user.nil?%>
-								<% if current_user.id == @group.admin_id%>
-									<%= link_to("Add new Event", new_group_event_path(@group.id))%>
+				</li>
+			</ul>
+			<ul>
+				<% @events.each do |event|%>
+					<div class="article-field">
+							<% unless current_user.nil? %>
+								<% if current_user.id == @group.admin_id %>
+									<div class="dropdown pull-right">
+			  							<button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-expanded="true"><span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
+			  								<span class="caret"></span></button>
+				  							<ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
+				  								<li role="presentation" class="dropdown-header">Event menu</li>
+				    							<li role="presentation"><a role="menuitem" tabindex="-1" ><%= link_to("Edit", edit_event_path(event))%></li>
+				    							<li role="presentation"><a role="menuitem" tabindex="-1" ><%= link_to("Delete", event_path(event), method: :delete)%></li>
+				  							</ul>
+									</div>
 								<% end %>
 							<% end %>
-						</li>
-					</ul>
-					<ul>
-						<% @events.each do |event|%>
-							<div class="article-field">
-									<% unless current_user.nil? %>
-										<% if current_user.id == @group.admin_id %>
-											<div class="dropdown pull-right">
-					  							<button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-expanded="true"><span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
-					  								<span class="caret"></span></button>
-						  							<ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
-						  								<li role="presentation" class="dropdown-header">Event menu</li>
-						    							<li role="presentation"><a role="menuitem" tabindex="-1" ><%= link_to("Edit", edit_event_path(event))%></li>
-						    							<li role="presentation"><a role="menuitem" tabindex="-1" ><%= link_to("Delete", event_path(event), method: :delete)%></li>
-						  							</ul>
-											</div>
-										<% end %>
-									<% end %>
-									<h2><li><%= event.title%></li></h2>
-									<h4><li><%= event.description%></li></h4>
-									<% unless current_user.nil? %>
-										<% if current_user.group_id == @group.id %>
-											<%= link_to("Event Info", event_path(event), class: "nav-tabs-blue")%>
-										<% end %>
-									<% end %>
-							</div>
-						<% end %>
-						<br>
-					</ul>
-					<%= link_to("Back", '/', :class => "btn btn-default")%>
+							<h2><li><%= event.title%></li></h2>
+							<h4><li><%= event.description%></li></h4>
+							<% unless current_user.nil? %>
+								<% if current_user.group_id == @group.id %>
+									<%= link_to("Event Info", event_path(event), :class => "nav-tabs-blue")%>
+								<% end %>
+							<% end %>
+					</div>
+				<% end %>
+				<br>
+			</ul>
+			<%= link_to("Back", '/', :class => "btn btn-default")%>
 		<br>
 	</div>
 	<br>

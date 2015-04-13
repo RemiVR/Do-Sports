@@ -3,14 +3,14 @@ $(document).ready(function(){
 	$("form.new_group").hide();
 
 	$("#add-new-group").on("click", function(){
-		$("form.new_group").show();
-		$("#groups").hide();
+		$("form.new_group").fadeIn();
+		$("#groups").fadeOut();
 	});
 
   $("form.edit_user").hide();
 
   $("#edit-user").on("click", function(){
-    $("form.edit_user").show();
+    $("form.edit_user").fadeIn();
     $("#profile").hide();
     $("#edit-user").hide();
   });
@@ -18,7 +18,13 @@ $(document).ready(function(){
   $(".btn-cancel").on("click", function(){    
     $("#profile").show();
     $("#edit-user").show();
-    $("form.edit_user").hide();
+    $("form.edit_user").fadeOut();
+  })
+
+  $(".selected-member").hide();
+
+  $(".member-info").on("click", function(event){
+    $(this).addClass("selected-member");
   })
 
 });

@@ -10,12 +10,13 @@ class GroupsController < ApplicationController
 		end
 		@event = Event.all
 		@sports = Sport.all
-		@event_news = Event.where(date: Date.today.beginning_of_day..Date.today.end_of_week).order("date ASC")
+		@event_news = Event.where(date: Date.today.beginning_of_day..7.days.from_now).order("date ASC")
 	end
 	
 	def show
 		@group = Group.find(params[:id])
 		@users = @group.users
+		@user = User.find(params[:id])
 		@events = @group.events
 		@sport = @group.sport.title
 	end
