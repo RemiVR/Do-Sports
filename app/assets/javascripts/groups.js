@@ -24,7 +24,7 @@ $(document).ready(function(){
   $(".selected-member").hide();
 
   $(".member-info").on("click", function(event){
-    $(this).addClass("selected-member");
+    $(".selected-member").fadeToggle(500);
   })
 
 });
