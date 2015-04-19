@@ -27,6 +27,11 @@ $(document).ready(function(){
     $(".selected-member").fadeToggle(500);
   })
 
+  $(".login-form").hide();
+
+  $(".sign-in").on("click", function(){
+      $(".login-form").show();
+  });
 });
 
       // function initialize() {

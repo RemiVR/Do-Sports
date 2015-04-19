@@ -8,8 +8,9 @@ body{
   	-moz-background-size: cover;
   	-o-background-size: cover;
   	background-size: cover;
+  	width: 100%;
 }
-body ul{
+body ul li{
 	list-style-type: none;
 }
 .link_to{
@@ -79,7 +80,7 @@ body ul{
 	background-color: #CCC;
 }
 .login-form{
-	float: right;
+	display: block;
 	padding-top: 1.5em;
 }
 .btn-cancel{
