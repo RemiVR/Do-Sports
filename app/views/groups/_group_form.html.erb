@@ -9,6 +9,9 @@
 	<%= f.label :type_of_sport%>
 	<%= f.select(:sport_id, @sports.collect {|sport| [sport.title, sport.id]}) %>
 	<br>
+	<%= f.label :private_group%>
+	<%= f.check_box :private_group, :as => :boolean%>
+	<br>
 	<%= f.label :logo%>
 	<%= f.file_field :logo%>
 	<br>

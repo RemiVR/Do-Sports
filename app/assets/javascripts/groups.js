@@ -27,11 +27,11 @@ $(document).ready(function(){
     $(".selected-member").fadeToggle(500);
   })
 
-  $(".login-form").hide();
+  // $(".login-form").hide();
 
-  $(".sign-in").on("click", function(){
-      $(".login-form").show();
-  });
+  // $(".sign-in").on("click", function(){
+  //     $(".login-form").show();
+  // });
 });
 
       // function initialize() {
