@@ -13,10 +13,15 @@ Rails.application.routes.draw do
 #attendance
   post '/event/:id/add_attendant' => 'attendances#create', as: 'create_attendance'
   delete '/event/:id/delete_attendant' => 'attendances#destroy', as: 'destroy_attendance'
+#message
+  # get '/messages' => 'messages#index', as: 'messages'
+  # get '/messages/new' => 'messages#new', as: 'new_message'
+  # post '/messages' => 'messages#create'
 
   resources :groups do
     resources :events, :only => [:index, :create, :new]
   end
+    resources :messages
 
   resources :users
   resources :events, :only => [:show, :edit, :update, :destroy]

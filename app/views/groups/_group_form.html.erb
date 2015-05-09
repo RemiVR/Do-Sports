@@ -1,16 +1,25 @@
-
 <%= form_for @group, :html => { :multipart => true } do |f| %>
 	<%= f.label :name%>
 	<%= f.text_field :name, :class => "form-control", placeholder: "name"%>
 	<br>
 	<%= f.label :description%>
-	<%= f.text_area :description, :cols => 70, :rows => 7, :class => "form-control", :placeholder => "Write something about yourself"%>
+	<%= f.text_area :description, :cols => 70, :rows => 7, :class => "form-control", :placeholder => "Description"%>
 	<br>
 	<%= f.label :type_of_sport%>
 	<%= f.select(:sport_id, @sports.collect {|sport| [sport.title, sport.id]}) %>
 	<br>
-	<%= f.label :private_group%>
-	<%= f.check_box :private_group, :as => :boolean%>
+	 <table>
+        <tr>
+        	<strong>Private Group?</strong>
+            <td><%= f.label 'private_group_true', 'Yes' %></td>
+            <td><%= f.radio_button :private_group, true %></td>
+        </tr>
+
+        <tr>
+            <td><%= f.label 'private_group_false', 'No' %></td>
+            <td><%= f.radio_button :private_group, false %></td>
+        </tr>
+    </table>
 	<br>
 	<%= f.label :logo%>
 	<%= f.file_field :logo%>
