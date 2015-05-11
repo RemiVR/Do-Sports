@@ -1,14 +1,12 @@
 class MessagesController < ApplicationController
-	def index
-		@messages = Message.all
-	end
 	def new
+		@messages = Message.all.order("created_at ASC")
 		@message = Message.new
 	end
 	def create
 		@message = Message.new message_params
 		if @message.save
-			redirect_to messages_path
+			redirect_to new_message_path
 		else
 			render 'new'
 		end
@@ -27,9 +25,15 @@ class MessagesController < ApplicationController
 	# 	end
 	# end
 
+	def destroy
+		@message = Message.find(params[:id])
+		@message.destroy
+		redirect_to new_message_path
+	end
+
 	private
 
 	def message_params
-		params.require(:message).permit(:content, :user_id, :group_id)
+		params.require(:message).permit(:content, :user_id)
 	end
 end

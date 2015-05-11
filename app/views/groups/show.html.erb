@@ -17,9 +17,9 @@
 			<% end %>
 		<% end %>
 			<% if @group.private_group == true %>
-				<h1>Hello</h1>
+				<h1>Private</h1>
 			<% else %>
-				<h1>Bye</h1>
+				<h1>Public</h1>
 			<% end %>
 		<div class="media">
 				<div class="media-left">
@@ -41,12 +41,12 @@
 			<% end %>
 		<% end %>
 		<hr>
+			<%= link_to("new_message", new_message_path(@group.id), method: :post, :class => "btn btn-success")%>
 		<h2>Upcoming events </h2>
 			<ul>
 				<li>
 					<%unless current_user.nil?%>
 						<% if current_user.id == @group.admin_id%>
-							<%= link_to("Add new Event", new_group_event_path(@group.id))%>
 						<% end %>
 					<% end %>
 				</li>

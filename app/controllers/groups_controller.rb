@@ -20,6 +20,10 @@ class GroupsController < ApplicationController
 		@sport = @group.sport.title
 	end
 
+	def create_new_message
+		@group = set_group
+		@message = wnew_message(@group.id)
+	end
 
 	def join_new_group
 		@group = set_group
@@ -85,8 +89,4 @@ private
 	def admin_user
 		@admin_user = Group.admin_id
 	end
-	# def message_params
-	# 	params.require(:message).pemrit(:content, :group_id)
-	# end
-
 end
