@@ -14,22 +14,25 @@ class GroupsController < ApplicationController
 	end
 	
 	def show
-		@group = Group.find(params[:id])
+		@group = set_group
 		@users = @group.users
-		@user = User.find(params[:id])
 		@events = @group.events
 		@sport = @group.sport.title
 	end
 
+	def create_new_message
+		@group = set_group
+		@message = wnew_message(@group.id)
+	end
 
 	def join_new_group
-		@group = Group.find(params[:id])
+		@group = set_group
 		current_user.join_group(@group.id)
 		redirect_to group_path(@group.id)
 	end
 
 	def leave_old_group
-		@group = Group.find(params[:id])
+		@group = set_group
 		current_user.leave_group(@group.id)
 		redirect_to group_path(@group.id)
 	end
@@ -52,12 +55,12 @@ class GroupsController < ApplicationController
 
 	def edit
 		@sports = Sport.all
-		@group = Group.find(params[:id])
+		@group = set_group
 		@users = @group.users
 	end
 
 	def update
-		@group = Group.find(params[:id])
+		@group = set_group
 		if @group.update_attributes group_params
 			redirect_to group_path(@group.id)
 		else
@@ -75,13 +78,15 @@ class GroupsController < ApplicationController
 		redirect_to root_path
 	end
 
-	private
+private
 	
 	def group_params
 		params.require(:group).permit(:name, :sport_id, :logo, :description, :private_group)
 	end
+	def set_group
+		Group.find(params[:id])
+	end
 	def admin_user
 		@admin_user = Group.admin_id
 	end
-
 end

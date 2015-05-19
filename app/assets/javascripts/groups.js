@@ -11,27 +11,20 @@ $(document).ready(function(){
 
   $("#edit-user").on("click", function(){
     $("form.edit_user").fadeIn();
-    $("#profile").hide();
-    $("#edit-user").hide();
   });
   
   $(".btn-cancel").on("click", function(){    
     $("#profile").show();
     $("#edit-user").show();
     $("form.edit_user").fadeOut();
-  })
+  });
 
   $(".selected-member").hide();
 
   $(".member-info").on("click", function(event){
     $(".selected-member").fadeToggle(500);
-  })
+  });
 
-  // $(".login-form").hide();
-
-  // $(".sign-in").on("click", function(){
-  //     $(".login-form").show();
-  // });
 });
 
       // function initialize() {

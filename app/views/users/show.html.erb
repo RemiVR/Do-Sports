@@ -1,33 +1,22 @@
 <div class="row">
-	<div class="col-md-3 members-field">
-		<h2><strong>Events this week</strong></h2>
-		<hr>
-		<% @events.each do |event|%>
-			<h3><%= link_to(event.title, group_path(event.group_id), :class => "link-color") %></h3>
-			<%unless event.id == nil%>
-				hosted by: <%= event.group.name %>
-			<% end %>
-		<% end %>
-
-
-
-	</div>
-	<div class="col-md-9 front-field">
-		<div class="media" id="profile">
+	<div class="col-md-12 front-field">
+		<div class="media col-md-7" id="profile">
 			<div class="media-left">
 				<%= image_tag @user.photo.url(:medium), :class => "img-rounded" %>
 			</div>
 			<div class="media-body">
-			<h1 class="media-heading"><%= @user.name%></h1>
+				<h1 class="media-heading"><%= @user.name%></h1>
 				<br>
 				<h4><%= @user.email%></h4>
 				<h4><%= @user.birthday%></h4>
 				<h5><%= @user.summary%></h5>
 			</div>
 		</div>
-		<% unless current_user.nil? || @user.id != current_user.id%>
-			<a href="#" class="btn btn-default" id="edit-user">Edit</a>
-			<%= render 'user_form' %>
-		<%end%>			
+		<div class="col-md-5">
+			<% unless current_user.nil? || @user.id != current_user.id%>
+				<a href="#" class="btn btn-default" id="edit-user">Edit</a>
+				<%= render 'user_form' %>
+			<%end%>			
+		</div>
 	</div>
 </div>

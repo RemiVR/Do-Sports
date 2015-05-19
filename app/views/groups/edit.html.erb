@@ -1,10 +1,4 @@
 <div class="row">
-	<div class="col-md-3 members-field">
-		<h3>Members!</h3>
-		<hr>
-		<% @users.each do |user|%>
-			<h4><%= image_tag user.photo.url(:thumb)%><%= user.name%></h4>
-		<% end %>
 	</div>
 	<div class="col-md-9 centered front-field">
 		<h1>edit a group</h1>
