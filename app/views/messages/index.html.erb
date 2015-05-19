@@ -1,8 +1,0 @@
-<%= @messages.each do |message|%>
-	<h6><%= message.user_id %></h6>
-	<h6><%= message.group_id %></h6>
-	<p><%= message.content %></p>
-	<%= link_to "DELETE", message_path(message), method: :delete%>
-<% end %>
-	<br>
-	<%= link_to "New message", new_message_path%>

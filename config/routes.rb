@@ -18,8 +18,8 @@ Rails.application.routes.draw do
 
   resources :groups do
     resources :events, :only => [:index, :create, :new]
-  end
     resources :messages
+  end
 
   resources :users
   resources :events, :only => [:show, :edit, :update, :destroy]

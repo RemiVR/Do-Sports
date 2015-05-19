@@ -4,7 +4,6 @@
 	def show
 		@user = set_user
 		@events = Event.all
-		fail
 	end
 
 	def new

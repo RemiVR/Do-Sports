@@ -1,12 +1,13 @@
 <div class="row">
-	<div class="col-md-3 members-field" >
-		<h3>Members</h3>
-		<hr>
-	</div>
-	<div class="col-md-9 front-field">
+	<div class="col-md-7 front-field">
 		<% unless current_user.nil?%>
 			<% if @group.admin_id == current_user.id %>
 				<div class="dropdown pull-right">
+			<% if @group.private_group == true %>
+				<h1>Hello</h1>
+			<% else %>
+				<h1>Bye</h1>
+			<% end %>
 						<button class="btn btn-warning dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-expanded="true"><span class="glyphicon glyphicon-cog" aria-hidden="true"></span><span class="caret"></span></button>
 	  				<ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
 	  					<li role="presentation" class="dropdown-header">Group menu</li>
@@ -16,11 +17,6 @@
 				</div>
 			<% end %>
 		<% end %>
-			<% if @group.private_group == true %>
-				<h1>Private</h1>
-			<% else %>
-				<h1>Public</h1>
-			<% end %>
 		<div class="media">
 				<div class="media-left">
 					<%= image_tag @group.logo.url(:thumb), :class => "img-rounded" %>
@@ -41,12 +37,12 @@
 			<% end %>
 		<% end %>
 		<hr>
-			<%= link_to("new_message", new_message_path(@group.id), method: :post, :class => "btn btn-success")%>
 		<h2>Upcoming events </h2>
 			<ul>
 				<li>
 					<%unless current_user.nil?%>
 						<% if current_user.id == @group.admin_id%>
+							<%= link_to("Add new Event", new_group_event_path(@group.id))%>
 						<% end %>
 					<% end %>
 				</li>
@@ -81,5 +77,25 @@
 			<%= link_to("Back", '/', :class => "btn btn-default")%>
 		<br>
 	</div>
+
+	<div class="col-md-5 members-field" >
+		<div class="chat">
+			<div class="message">
+				<ul>
+					<% @group.messages.each do |message| %>
+						<li>
+							<%= message.user.name.capitalize %>:</br> <%= message.content.capitalize %>
+							<p class="message-time"><%= time_ago_in_words(message.created_at)%></p>
+						</li>
+					<% end %>
+				</ul>
+			</div>
+		</div>
+		<div>
+			<%= render "messages/form"%>
+		</div>
+	</div>
+
+	
 	<br>
 </div>

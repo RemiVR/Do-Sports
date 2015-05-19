@@ -94,16 +94,15 @@ body ul li{
 /*Messages*/
 .chat{
 	background-color: rgb(150,120,150);
-	width: 600px;
-	height: 300px;
+	height: 35em;
 	overflow: scroll; 
 }
 .message li{
 	background: white;
-	border: 2px solid skyblue;
+	border: 3px solid skyblue;
 	border-radius: 10px;
-	padding: 7px;
-	margin: 3px auto;
+	padding: 0.6em;
+	margin: 3px 0;
 }
 .message-time{
 	float: right;

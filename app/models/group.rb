@@ -1,7 +1,7 @@
 class Group < ActiveRecord::Base
 	has_many :users
 	has_many :events, dependent: :destroy
-  has_many :messages, through: :users
+  has_many :messages
 	belongs_to :sport
 
   validates :private_group, :presence => {:if => 'private_group.nil?'}
