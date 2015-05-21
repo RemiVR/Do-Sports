@@ -77,7 +77,7 @@
 			<%= link_to("Back", '/', :class => "btn btn-default")%>
 		<br>
 	</div>
-
+	<% unless current_user.nil? || current_user.group_id != @group.id %>
 	<div class="col-md-5 members-field" >
 		<div class="chat">
 			<div class="message">
@@ -95,7 +95,9 @@
 			<%= render "messages/form"%>
 		</div>
 	</div>
-
+	<% else %>
+		<h1>This section is for group members only</h1>
+	<% end %>
 	
 	<br>
 </div>
