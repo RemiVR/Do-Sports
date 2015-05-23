@@ -18,8 +18,11 @@ class GroupsController < ApplicationController
 		@users = @group.users
 		@events = @group.events
 		@sport = @group.sport.title
+		# @message = @group.messages.each do |message|
+		# 	message.content
+		# end
 	end
-
+ 
 	def create_new_message
 		@group = set_group
 		@message = wnew_message(@group.id)

@@ -25,6 +25,9 @@ $(document).ready(function(){
     $(".selected-member").fadeToggle(500);
   });
 
+  // $("chat").scrollTop(d.prop("scrollHeight"));
+  $('.chat').scrollTop($('.chat')[0].scrollHeight);
+
 });
 
       // function initialize() {
