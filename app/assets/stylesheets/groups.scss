@@ -91,20 +91,3 @@ body ul li{
 .btn-cancel{
 	padding-right: 1em;
 }
-/*Messages*/
-.chat{
-	background-color: rgb(150,120,150);
-	height: 30em;
-	overflow: scroll; 
-}
-.message li{
-	background: white;
-	border: 3px solid skyblue;
-	border-radius: 10px;
-	padding: 0.6em;
-	margin: 3px 0;
-}
-.message-time{
-	float: right;
-	font-size: 10px;
-}

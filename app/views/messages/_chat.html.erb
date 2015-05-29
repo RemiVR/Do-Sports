@@ -1,0 +1,27 @@
+<% unless current_user.nil? || current_user.group_id != @group.id %>
+	<div class="chat">
+		<div class="message">
+				<% @group.messages.each do |message| %>
+					<li>
+						<%= message.user.name.capitalize %>:</br> <%= message.content.capitalize %>
+						<div class="message-time">
+							<%= message.created_at.to_formatted_s(:short)%>
+						</div>
+					</li>
+				<% end %>
+		</div>
+	</div>
+	
+	<%= form_for([@group, @group.messages.build]) do |f|%>
+		<div class="input-group message-form">
+			<%= f.hidden_field :user_id, value: current_user.id %>
+			<%= f.text_field :content, :class => "form-control", placeholder: "Enter the text" %>
+			<span class="input-group-btn">
+				<%= f.submit "Send", :class => "btn btn-default"%>
+			</span>
+		</div>
+	<% end %>
+
+<% else %>
+	<h1>This section is for group members only</h1>
+<% end %>

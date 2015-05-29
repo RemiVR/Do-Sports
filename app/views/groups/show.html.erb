@@ -4,9 +4,9 @@
 			<% if @group.admin_id == current_user.id %>
 				<div class="dropdown pull-right">
 			<% if @group.private_group == true %>
-				<h1>Hello</h1>
+				<h1>Private</h1>
 			<% else %>
-				<h1>Bye</h1>
+				<h1>Public</h1>
 			<% end %>
 						<button class="btn btn-warning dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-expanded="true"><span class="glyphicon glyphicon-cog" aria-hidden="true"></span><span class="caret"></span></button>
 	  				<ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
@@ -48,54 +48,37 @@
 				</li>
 			</ul>
 			<ul>
-				<% @events.each do |event|%>
+					<% @events.each do |event|%>
+				<div class="events">
 					<div class="article-field">
-							<% unless current_user.nil? %>
-								<% if current_user.id == @group.admin_id %>
-									<div class="dropdown pull-right">
-			  							<button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-expanded="true"><span aria-hidden="true"></span>Edit</button>
-				  							<ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
-				  								<li role="presentation" class="dropdown-header">Edit</li>
-				    							<li role="presentation"><a role="menuitem" tabindex="-1" ><%= link_to("Edit", edit_event_path(event))%></li>
-				    							<li role="presentation"><a role="menuitem" tabindex="-1" ><%= link_to("Delete", event_path(event), method: :delete)%></li>
-				  							</ul>
-									</div>
-								<% end %>
+						<% unless current_user.nil? %>
+							<% if current_user.id == @group.admin_id %>
+								<div class="dropdown pull-right">
+		  							<button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-expanded="true"><span aria-hidden="true"></span>Edit</button>
+			  							<ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
+			  								<li role="presentation" class="dropdown-header">Edit</li>
+			    							<li role="presentation"><a role="menuitem" tabindex="-1" ><%= link_to("Edit", edit_event_path(event))%></li>
+			    							<li role="presentation"><a role="menuitem" tabindex="-1" ><%= button_to("Delete", event_path(event), method: :delete)%></li>
+			  							</ul>
+								</div>
 							<% end %>
-							<h2><li><%= event.title%></li></h2>
-							<h4><li><%= event.description%></li></h4>
-							<% unless current_user.nil? %>
-								<% if current_user.group_id == @group.id %>
-									<%= link_to("Event Info", event_path(event), :class => "nav-tabs-blue")%>
-								<% end %>
+						<% end %>
+					<h2><li><%= event.title%></li></h2>
+					<h4><li><%= event.description%></li></h4>
+						<% unless current_user.nil? %>
+							<% if current_user.group_id == @group.id %>
+								<%= link_to("Event Info", event_path(event), :class => "nav-tabs-blue")%>
 							<% end %>
+						<% end %>
 					</div>
 				<% end %>
-				<br>
+				</div>
 			</ul>
 
 			<%= link_to("Back", '/', :class => "btn btn-default")%>
 		<br>
 	</div>
-	<% unless current_user.nil? || current_user.group_id != @group.id %>
-		<div class="col-md-5 members-field" >
-			<div class="chat">
-				<div class="message">
-						<% @group.messages.each do |message| %>
-							<li>
-								<%= message.user.name.capitalize %>:</br> <%= message.content.capitalize %>
-								<p class="message-time"><%= time_ago_in_words(message.created_at)%></p>
-							</li>
-						<% end %>
-				</div>
-			</div>
-			<div>
-				<%= render "messages/form"%>
-			</div>
-		</div>
-	<% else %>
-		<h1>This section is for group members only</h1>
-	<% end %>
-	
-	<br>
+	<div class="col-md-5" >
+		<%= render "messages/chat"%>
+	</div>
 </div>
