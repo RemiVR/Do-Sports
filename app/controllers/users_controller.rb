@@ -25,6 +25,7 @@
 	end
 
 	def update
+		@user = set_user
 		 if @user.update_attributes(user_params)
       		flash[:notice] = "User updated successfully"
       		redirect_to user_path(@user)

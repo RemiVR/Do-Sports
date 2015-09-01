@@ -1,7 +1,7 @@
 class Group < ActiveRecord::Base
 	has_many :users
 	has_many :events, dependent: :destroy
-  has_many :messages
+  	has_many :messages
 	belongs_to :sport
 
   validates :private_group, :presence => {:if => 'private_group.nil?'}
@@ -11,10 +11,10 @@ class Group < ActiveRecord::Base
 
 	def self.search(search)
 		if search
-  		where("name ILIKE ?", "%#{search}%")
+  			where("name ILIKE ?", "%#{search}%")
 		else
-  		all
+  			all
 		end
-  end
+	end
 
 end

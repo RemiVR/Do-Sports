@@ -29,7 +29,7 @@ class EventsController < ApplicationController
 	def update
 		@event = Event.find(params[:id])
 		if @event.update_attributes event_params
-			redirect_to group_path(@event.group_id)
+			redirect_to manage_group_path(@event.group_id)
 		else
 			render 'edit'
 		end
@@ -38,7 +38,7 @@ class EventsController < ApplicationController
 	def destroy
 		@event = Event.find(params[:id])
 		@event.destroy
-		redirect_to group_path(@event.group_id)
+		redirect_to manage_group_path(@event.group_id)
 	end
 
 	private

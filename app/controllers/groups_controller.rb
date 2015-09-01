@@ -1,8 +1,7 @@
 class GroupsController < ApplicationController
 
 	def index
-		@groups = Group.all
-		@group = Group.new
+		@groups = Group.all.paginate(:per_page => 2, :page => params[:page])
 		if !params[:search].nil?
 			@groups = Group.search(params[:search])
 		elsif !params[:filter].nil?
@@ -18,14 +17,13 @@ class GroupsController < ApplicationController
 		@users = @group.users
 		@events = @group.events
 		@sport = @group.sport.title
-		# @message = @group.messages.each do |message|
-		# 	message.content
-		# end
 	end
- 
+ 	def manage_group
+ 		@group = set_group
+ 	end
 	def create_new_message
 		@group = set_group
-		@message = wnew_message(@group.id)
+		@message = new_message(@group.id)
 	end
 
 	def join_new_group

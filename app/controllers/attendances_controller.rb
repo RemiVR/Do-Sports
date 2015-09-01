@@ -20,4 +20,9 @@ class AttendancesController < ApplicationController
 		@attendance.destroy
 		redirect_to event_path(params[:id])
 	end
+
+	def destroy_member_attendance
+		@attendance = Attendance.where({user_id: params[:id]})
+		@attendance.destroy
+	end
 end

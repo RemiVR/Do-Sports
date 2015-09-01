@@ -3,7 +3,7 @@
 		<h3>People Attending</h3>
 		<hr>
 		<% @users.each do |user|%>
-			<h4><%= image_tag user.photo.url(:thumb)%><%= user.name%></h4>
+			<h4><%= image_tag user.photo.url(:thumb)%><%= user.name%></h4><%= button_to("Remove", destroy_member_attendance_path, method: :delete)%>
 		<% end %>
 	</div>
 
