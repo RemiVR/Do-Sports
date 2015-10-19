@@ -15,7 +15,7 @@ Rails.application.routes.draw do
   delete '/event/:id/delete_attendant' => 'attendances#destroy', as: 'destroy_attendance'
   delete '/event/:id/delete_member_attendance' => 'attendances#destroy_member_attendance', as: 'destroy_member_attendance'
 #message
-  # post '/message/:group_id' => 'groups#add_new_message', as: 'new_message'
+  post '/message/:group_id' => 'groups#add_new_message', as: 'new_message'
   get '/group/:id/manage' => 'groups#manage_group', as: 'manage_group'
   resources :groups do
     resources :events, :only => [:index, :create, :new]
