@@ -81,16 +81,10 @@
 		<div class="col-md-5 members-field" >
 			<div class="chat">
 				<div class="message">
-						<% @group.messages.each do |message| %>
-							<li>
-								<%= message.user.name.capitalize %>:</br> <%= message.content.capitalize %>
-								<p class="message-time"><%= time_ago_in_words(message.created_at)%></p>
-							</li>
-						<% end %>
 				</div>
 			</div>
 			<div>
-				<%= render "messages/form"%>
+
 			</div>
 		</div>
 	<% else %>

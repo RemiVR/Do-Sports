@@ -18,7 +18,6 @@ Rails.application.routes.draw do
 
   resources :groups do
     resources :events, :only => [:index, :create, :new]
-    resources :messages
   end
 
   resources :users

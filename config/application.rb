@@ -6,6 +6,7 @@ require 'rails/all'
 # you've limited to :test, :development, or :production.
 Bundler.require(*Rails.groups)
 
+
 module DoSports
   class Application < Rails::Application
     # Settings in config/environments/* take precedence over those specified here.
@@ -22,5 +23,7 @@ module DoSports
 
     # Do not swallow errors in after_commit/after_rollback callbacks.
     config.active_record.raise_in_transactional_callbacks = true
+    config.middleware.delete Rack::Lock
+    config.middleware.use FayeRails::Middleware, mount: '/faye', :timeout => 25
   end
 end
